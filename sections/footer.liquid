@@ -20,9 +20,11 @@
 					</a>
 				</div>
 				<div class="list">
-					{{ section.settings.address }}
-					<span class="separator"></span>
-					<a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+					{{ settings.address }}
+					{% if settings.email != blank %}
+						<span class="separator"></span>
+						<a href="mailto:{{ settings.email }}">{{ settings.email }}</a>
+					{% endif %}
 				</div>
 				<div class="copyright">{{ section.settings.copyright }}</div>
 
@@ -58,17 +60,6 @@
             "type": "link_list",
             "id": "menu-right",
             "label": "Menu right"
-        },
-		{
-            "type": "richtext",
-            "id": "address",
-            "label": "Address",
-            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
-        },
-        {
-            "type": "text",
-            "id": "email",
-            "label": "Email"
         },
         {
             "type": "richtext",

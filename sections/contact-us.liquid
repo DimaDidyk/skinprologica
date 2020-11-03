@@ -1,0 +1,44 @@
+<div class="section-contact-us color_background_light">
+	<div class="container">
+		<h3 class="align-center no-margin">Contact Us</h3>
+		<div class="contact-grid">
+
+			{% if settings.email != blank %}
+				<div class="contact-item">
+					{% render 'icon-mail' %}
+						<span class="separator"></span>
+						<a href="mailto:{{ settings.email }}">{{ settings.email }}</a>
+				</div>
+			{% endif %}
+
+			{% if settings.tel != blank %}
+				<div class="contact-item">
+					{% render 'icon-phone' %}
+					<span class="separator"></span>
+					<a href="tel:{{ settings.tel }}">{{ settings.tel }}</a>
+					<div class="schedule">{{ settings.schedule }}</div>
+				</div>
+			{% endif %}
+
+			{% if settings.address != blank %}
+				<div class="contact-item">
+					{% render 'icon-map' %}
+					{{ settings.address }}
+				</div>
+			{% endif %}
+
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Contact us",
+    "settings": [],
+    "presets": [
+        {
+            "name": "Contact us"
+        }
+    ]
+}
+{% endschema %}

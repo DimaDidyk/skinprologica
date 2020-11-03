@@ -4,10 +4,13 @@
 		<div class="container">
 			<div class="header-top-content">
 				<div class="left-side">
-					<div class="icon shadow">{% render 'icon-phone' %}</div>
-					<div class="text">
-						{{ section.settings.call-text }}
-					</div>
+					{% if settings.tel != blank %}
+						<div class="icon shadow">{% render 'icon-phone' %}</div>
+						<div class="text">
+							<b class="color_first">Call:</b> {{ settings.tel }}<br>
+							{{ settings.schedule }}
+						</div>
+					{% endif %}
 				</div>
 				<div class="logo">
 					<a href="/">
@@ -18,10 +21,12 @@
 					</a>
 				</div>
 				<div class="right-side">
-					<div class="icon shadow">{% render 'icon-map' %}</div>
-					<div class="text">
-						{{ section.settings.map-text }}
-					</div>
+					{% if settings.address != blank %}
+						<div class="icon shadow">{% render 'icon-map' %}</div>
+						<div class="text">
+							{{ settings.address }}
+						</div>
+					{% endif %}
 				</div>
 			</div>
 
@@ -58,18 +63,6 @@
             "type": "image_picker",
             "id": "logo",
             "label": "Logo"
-        },
-        {
-            "type": "html",
-            "id": "call-text",
-            "label": "Call text",
-            "default": "<div><p>Some HTML content</p></div>"
-        },
-        {
-            "type": "html",
-            "id": "map-text",
-            "label": "Map text",
-            "default": "<div><p>Some HTML content</p></div>"
         },
         {
             "type": "link_list",
