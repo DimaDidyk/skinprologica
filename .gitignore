@@ -1,0 +1,14 @@
+# $PROJECT_DIR/themekit_ignores
+# plain file names
+config/settings_data.json
+
+# globs
+*.png
+
+# regex
+/\.(txt|gif|bat)$/
+
+#
+.idea
+theme.exe
+config.yml
