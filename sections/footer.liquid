@@ -1,0 +1,82 @@
+<div class="footer color_background_light shadow-2">
+	<div class="container">
+		<div class="footer-content">
+			<div class="left-menu">
+				<div class="footer-menu">
+					{% for link in linklists[section.settings.menu-left].links %}
+						<a href="{{ link.url }}"
+						   class="{% if link.current %}active{% endif %}">{{ link.title }}
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="footer-center-content">
+				<div class="footer-logo">
+					<a href="/">
+						<img class="lazyload"
+							 src="{{ section.settings.footer-logo | img_url: '100x50' }}"
+							 data-src="{{ section.settings.footer-logo | img_url: '360x90' }}"
+							 alt="{{ section.settings.footer-logo.alt }}">
+					</a>
+				</div>
+				<div class="list">
+					{{ section.settings.address }}
+					<span class="separator"></span>
+					<a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+				</div>
+				<div class="copyright">{{ section.settings.copyright }}</div>
+
+				{% render 'social-links' %}
+			</div>
+			<div class="right-menu">
+				<div class="footer-menu">
+					{% for link in linklists[section.settings.menu-right].links %}
+						<a href="{{ link.url }}"
+						   class="{% if link.current %}active{% endif %}">{{ link.title }}</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Footer",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "footer-logo",
+            "label": "Footer Logo"
+        },
+        {
+            "type": "link_list",
+            "id": "menu-left",
+            "label": "Menu left"
+        },
+        {
+            "type": "link_list",
+            "id": "menu-right",
+            "label": "Menu right"
+        },
+		{
+            "type": "richtext",
+            "id": "address",
+            "label": "Address",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        },
+        {
+            "type": "text",
+            "id": "email",
+            "label": "Email"
+        },
+        {
+            "type": "richtext",
+            "id": "copyright",
+            "label": "Copyright",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        }
+    ]
+}
+{% endschema %}
+

@@ -6,5 +6,123 @@
     "theme_author": "Shopify",
     "theme_documentation_url": "https://github.com/Shopify/themekit",
     "theme_support_url": "https://github.com/Shopify/themekit/issues"
+  },
+  {
+    "name": "Fonts",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_n3",
+        "label": "Font 300",
+        "default": "open_sans_n3"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_n4",
+        "label": "Font 400",
+        "default": "open_sans_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_n6",
+        "label": "Font 600",
+        "default": "open_sans_n6"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Main Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#E5E5E5"
+      },
+      {
+        "type": "color",
+        "id": "color_background_light",
+        "label": "Background light",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_heading",
+        "label": "Headings",
+        "default": "#39404B"
+      },
+      {
+        "type": "color",
+        "id": "color_link",
+        "label": "Links",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "color_link_active",
+        "label": "Links active",
+        "default": "#BC6866"
+      },
+      {
+        "type": "color",
+        "id": "color_first",
+        "label": "Color first",
+        "default": "#BC6866"
+      },
+      {
+        "type": "color",
+        "id": "color_second",
+        "label": "Color second",
+        "default": "#39404B"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Body text",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text_2",
+        "label": "Body text 2",
+        "default": "#828282"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text_3",
+        "label": "Body text 3",
+        "default": "#B4B4B4"
+      },
+      {
+        "type": "color",
+        "id": "color_borders",
+        "label": "Borders and lines",
+        "default": "#000"
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+          "type": "url",
+          "id": "instagram",
+          "label": "Instagram"
+      },
+      {
+          "type": "url",
+          "id": "twitter",
+          "label": "Twitter"
+      },
+      {
+          "type": "url",
+          "id": "facebook",
+          "label": "Facebook"
+      }
+    ]
   }
 ]

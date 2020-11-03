@@ -1,0 +1,65 @@
+<div class="hero">
+
+	<div class="gradient"></div>
+
+	{% if section.settings.hero-image != blank %}
+		<img class="bg-image lazyload js"
+			 src="{{ section.settings.hero-image | img_url: '200x' }}"
+			 data-src="{{ section.settings.hero-image | img_url: '1200x' }}"
+			 data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+			 data-aspectratio="{{ section.settings.hero-image.aspect_ratio }}"
+			 data-sizes="auto"
+			 alt="{{ section.settings.hero-image.alt | escape }}">
+	{% endif %}
+
+	<div class="container h-100">
+		<div class="hero-content h-100">
+			{% comment %}<img src="{{ 'hero-1.png' | asset_img_url: 'x200' }}" alt="{{ section.settings.heading }}">{% endcomment %}
+			<h2 class="align-center">
+				{{ section.settings.heading }}
+			</h2>
+			{{ section.settings.text }}
+			<a class="btn btn-primary btn-center" href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
+		</div>
+	</div>
+</div>
+
+
+{% schema %}
+{
+    "name": "Hero1",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "hero-image",
+            "label": "Hero image"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        },
+        {
+            "type": "text",
+            "id": "button-text",
+            "label": "Button text"
+        },
+        {
+            "type": "url",
+            "id": "button-url",
+            "label": "Button url"
+        }
+    ],
+	"presets": [
+		{
+			"name": "Hero"
+		}
+	]
+}
+{% endschema %}

@@ -1,0 +1,19 @@
+<div class="social-icons">
+	{% if settings.instagram != blank %}
+		<a href="{{ settings.instagram }}" target="_blank">
+			{% render 'icon-instagram' %}
+		</a>
+	{% endif %}
+
+	{% if settings.twitter != blank %}
+		<a href="{{ settings.twitter }}" target="_blank">
+			{% render 'icon-twitter' %}
+		</a>
+	{% endif %}
+
+	{% if settings.facebook != blank %}
+		<a href="{{ settings.facebook }}" target="_blank">
+			{% render 'icon-facebook' %}
+		</a>
+	{% endif %}
+</div>
