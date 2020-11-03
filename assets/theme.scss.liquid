@@ -53,13 +53,26 @@ body{
   background: $color_background;
 }
 h1, h2, h3, h4, h5, h6 {
-  color: $color_heading;
+  color: $color_body_text;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 h2{
   font-weight: 300;
   font-size: 50px;
   line-height: 55px;
 }
+h3{
+  font-weight: 300;
+  font-size: 35px;
+  line-height: 40px;
+}
+h4{
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 30px;
+}
+
 p{
   margin: 0;
   padding: 0;
@@ -90,9 +103,8 @@ a.acive{
     background: $color_first;
   }
   &.btn-secondary{
-
+    background: $color_second;
   }
-
   &.btn-center{
     margin-left: auto;
     margin-right: auto;
@@ -122,12 +134,19 @@ a.acive{
   padding-left: 0;
   padding-right: 0;
 }
+.no-padding{
+  padding: 0;
+}
+.no-margin{
+  margin: 0;
+}
 img{
   max-width: 100%;
 }
 .h-100{
   height: 100%;
 }
+
 
 /**
     Header
@@ -253,6 +272,39 @@ img{
     }
   }
 
+}
+
+/**
+    Rich text
+ */
+.rich-text{
+  padding-top: 76px;
+  padding-bottom: 50px;
+
+  .rich-text-content{
+    width: 960px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .text-content{
+    font-size: 16px;
+    line-height: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .buttons{
+    display: flex;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    justify-content: center;
+    .btn{
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
 }
 
 

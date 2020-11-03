@@ -18,8 +18,14 @@
 			<h2 class="align-center">
 				{{ section.settings.heading }}
 			</h2>
-			{{ section.settings.text }}
-			<a class="btn btn-primary btn-center" href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
+
+			{% if section.settings.text != blank %}
+				{{ section.settings.text }}
+			{% endif %}
+
+			{% if section.settings.button-text != blank and section.settings.button-url != blank %}
+				<a class="btn btn-primary btn-center" href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
+			{% endif %}
 		</div>
 	</div>
 </div>

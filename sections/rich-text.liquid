@@ -1,0 +1,78 @@
+<div class="rich-text color_background_light">
+	<div class="container">
+		<div class="rich-text-content">
+			{% if section.settings.title != blank %}
+				<h2 class="align-center no-margin">{{ section.settings.title }}</h2>
+			{% endif %}
+
+			{% if section.settings.sub-title != blank %}
+				<h4 class="align-center">{{ section.settings.sub-title }}</h4>
+			{% endif %}
+
+			{% if section.settings.richtext != blank %}
+				<div class="text-content align-center">{{ section.settings.richtext }}</div>
+			{% endif %}
+
+			<div class="buttons">
+				{% if section.settings.button-text != blank and section.settings.button-url != blank %}
+					<a class="btn btn-secondary"
+					   href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
+				{% endif %}
+
+				{% if section.settings.button-text-2 != blank and section.settings.button-url-2 != blank %}
+					<a class="btn btn-primary"
+					   href="{{ section.settings.button-url-2 }}">{{ section.settings.button-text-2 }}</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Rich text",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "text",
+            "id": "sub-title",
+            "label": "Sub titile"
+        },
+        {
+            "type": "richtext",
+            "id": "richtext",
+            "label": "Text",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        },
+		{
+            "type": "text",
+            "id": "button-text",
+            "label": "Button text 1"
+        },
+        {
+            "type": "url",
+            "id": "button-url",
+            "label": "Button url 1"
+        },
+		{
+            "type": "text",
+            "id": "button-text-2",
+            "label": "Button text 2"
+        },
+        {
+            "type": "url",
+            "id": "button-url-2",
+            "label": "Button url 2"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Rich text"
+        }
+    ]
+}
+{% endschema %}
