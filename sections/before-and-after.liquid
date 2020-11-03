@@ -1,0 +1,75 @@
+<div class="before-and-after-section color_background_light">
+	<div class="container">
+		<h3 class="align-center">Before and After</h3>
+		<div class="before-container">
+
+			{% for block in section.blocks %}
+				<div class="item">
+					{% if block.settings.image != blank %}
+						<img class="lazyload"
+							 src="{{ block.settings.image | img_url: '500x50' }}"
+							 data-src="{{ block.settings.image | img_url: '250x250' }}"
+							 alt="{{ block.settings.image.alt }}">
+					{% endif %}
+
+					{% if section.settings.logo != blank %}
+						<div class="logo">
+							<img class="lazyload js"
+								 src="{{ section.settings.logo | img_url: '1x1' }}"
+								 data-src="{{ section.settings.logo | img_url: '100x' }}"
+								 data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+								 data-aspectratio="{{ section.settings.bg.aspect_ratio }}"
+								 data-sizes="auto"
+								 alt="{{ section.settings.logo.alt | escape }}">
+						</div>
+					{% endif %}
+
+					{% if block.settings.title != blank %}
+						<div class="title">{{ block.settings.title }}</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+
+		</div>
+
+		<div class="btn btn-primary btn-center">See more</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Before and After",
+	"max_blocks": 100,
+    "settings": [
+		{
+			"type": "image_picker",
+			"id": "logo",
+			"label": "Logo"
+		}
+	],
+	"blocks": [
+		{
+			"type": "item",
+			"name": "Item",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "richtext",
+					"id": "title",
+					"label": "Title",
+					"default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+				}
+			]
+		}
+	],
+    "presets": [
+        {
+            "name": "Before and After"
+        }
+    ]
+}
+{% endschema %}
