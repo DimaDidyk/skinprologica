@@ -1,0 +1,54 @@
+<div class="gift-section">
+	<div class="container">
+		<div class="gift-content">
+			{% if section.settings.bg != blank %}
+				<img class="bg-image lazyload js"
+					 src="{{ section.settings.bg | img_url: '200x' }}"
+					 data-src="{{ section.settings.bg | img_url: '1200x' }}"
+					 data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+					 data-aspectratio="{{ section.settings.bg.aspect_ratio }}"
+					 data-sizes="auto"
+					 alt="{{ section.settings.bg.alt | escape }}">
+			{% endif %}
+
+			<div class="text-content">
+				{% if section.settings.title != blank %}
+					<h3 class="align-center">{% render 'icon-gift' %} {{ section.settings.title }}</h3>
+				{% endif %}
+
+				{% if section.settings.text != blank %}
+					<div class="text-content align-center">{{ section.settings.text }}</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Gift",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg",
+            "label": "Background"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Gift"
+        }
+    ]
+}
+{% endschema %}
