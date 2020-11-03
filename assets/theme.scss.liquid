@@ -321,6 +321,52 @@ img{
 }
 
 /**
+    Section: Testimonials
+ */
+.testimonials-section{
+  padding-top: 70px;
+  padding-bottom: 70px;
+  position: relative;
+  .testimonials-slider{
+    padding-bottom: 50px;
+    .item{
+      cursor: default;
+      img.avater{
+        display: block;
+        width: 134px;
+        height: 134px;
+        margin: 10px auto;
+        border-radius: 50%;
+      }
+      .stars{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        svg{
+          margin-left: 5px;
+          margin-right: 5px;
+        }
+        .opacity{
+          opacity: .5;
+        }
+      }
+      .comment{
+        font-size: 20px;
+        line-height: 27px;
+      }
+      .name{
+        font-family: 'Allura', cursive;
+        font-size: 35px;
+        line-height: 44px;
+        margin-top: 25px;
+      }
+    }
+  }
+}
+
+
+/**
     Section: Instagram
  */
 .instagram-section{
@@ -429,7 +475,6 @@ img{
   }
 }
 
-
 /**
     Footer
  */
@@ -500,4 +545,17 @@ img{
       padding-right: 15px;
     }
   }
+}
+
+
+/** Swiper custom style */
+.swiper-pagination-bullet{
+  background-color: $color_first;
+}
+.swiper-button-next:after, .swiper-button-prev:after{
+  font-weight: 900;
+  font-size: 22px;
+}
+.swiper-button-next, .swiper-button-prev{
+  color: $color_first;
 }
