@@ -1,0 +1,84 @@
+<div class="our-services-section color_background_light">
+	<div class="container">
+		{% if section.settings.title != blank %}
+			<h3 class="align-center no-margin">{{ section.settings.title }}</h3>
+		{% endif %}
+
+		{% if section.settings.text != blank %}
+			<div class="align-center sub-text">{{ section.settings.text }}</div>
+		{% endif %}
+
+		<div class="custom-services">
+			{% for block in section.blocks %}
+				<div class="service-item">
+					{% if block.settings.image != blank %}
+						<img class="avater lazyload"
+							 src="{{ block.settings.image | img_url: '50x50' }}"
+							 data-src="{{ block.settings.image | img_url: '250x250' }}"
+							 alt="{{ block.settings.image.alt }}">
+					{% endif %}
+					{% if block.settings.title != blank %}
+						<div class="title">{{ block.settings.title }}</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+
+			{% if section.settings.main-image != blank %}
+				<img class="main-image lazyload"
+					 src="{{ section.settings.main-image | img_url: '50x50' }}"
+					 data-src="{{ section.settings.main-image | img_url: '830x830' }}"
+					 alt="{{ section.settings.main-image.alt }}">
+			{% endif %}
+		</div>
+
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Our services",
+	"max_blocks": 6,
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        },
+		{
+            "type": "image_picker",
+            "id": "main-image",
+            "label": "Image"
+        }
+    ],
+	"blocks": [
+		{
+			"type": "service",
+			"name": "Service",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "richtext",
+					"id": "title",
+					"label": "Title",
+					"default": "<p>Default <em>Title</em></p>"
+				}
+			]
+		}
+	],
+    "presets": [
+        {
+            "name": "Our services"
+        }
+    ]
+}
+{% endschema %}

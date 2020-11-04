@@ -321,11 +321,60 @@ img{
 }
 
 /**
+    Section: Our services
+ */
+.our-services-section{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  .sub-text{
+    width: 390px;
+    max-width: 100%;
+    color: $color_body_text_2;
+    margin: 10px auto 0;
+  }
+  .custom-services{
+    display: grid;
+    grid-template-columns: 1fr 500px 1fr;
+    margin-top: 60px;
+    .service-item{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      .title{
+        margin-top: 10px;
+        font-size: 25px;
+        line-height: 34px;
+      }
+    }
+    .service-item:nth-child(2n - 1){
+      align-items: flex-end;
+      .title{
+        text-align: right;
+      }
+    }
+    .service-item:nth-child(3){
+      padding-right: 40px;
+    }
+    .service-item:nth-child(4){
+      padding-left: 40px;
+    }
+    .main-image{
+      grid-column: 2;
+      grid-row: 1/ span 3;
+      margin: 0 auto;
+    }
+  }
+
+}
+
+
+/**
     Section: Testimonials
  */
 .testimonials-section{
-  padding-top: 70px;
-  padding-bottom: 70px;
+  padding: 70px 20px;
+  box-sizing: border-box;
   position: relative;
   .testimonials-slider{
     padding-bottom: 50px;

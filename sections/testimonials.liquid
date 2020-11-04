@@ -89,6 +89,18 @@
 }
 {% endschema %}
 
+{% javascript %}
+var testimonialsSlider = new Swiper('#testimonials-slider', {
+    pagination: {
+        el: '.swiper-pagination',
+    },
+    navigation: {
+        nextEl: '#testimonials-slider-next',
+        prevEl: '#testimonials-slider-prev',
+    }
+});
+{% endjavascript %}
+
 {% stylesheet %}
 @import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
 {% endstylesheet %}
