@@ -325,7 +325,7 @@ img{
  */
 .our-services-section{
   padding-top: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 150px;
   .sub-text{
     width: 390px;
     max-width: 100%;
@@ -366,6 +366,55 @@ img{
     }
   }
 
+}
+
+/**
+    Section: Text with Image
+ */
+.text-with-image-section{
+  position: relative;
+  background: #F9F9F9;
+  .text-left-side{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+  }
+  .text-content{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-right: 64px;
+    box-sizing: border-box;
+    .title{
+      margin-bottom: 20px;
+    }
+    .text{
+      font-size: 16px;
+      line-height: 30px;
+    }
+    .btn{
+      display: block;
+      margin-top: 50px;
+    }
+  }
+  .image-content{
+    position: relative;
+    height: 0;
+    width: 50%;
+    padding-bottom: 45.8%;
+    margin-right: 0;
+    margin-left: auto;
+    img{
+      position: absolute;
+      right: 0;
+      width: 100%;
+    }
+  }
 }
 
 

@@ -1,0 +1,70 @@
+<div class="text-with-image-section">
+	<div class="text-left-side">
+		<div class="container h-100">
+			<div class="text-content h-100">
+				{% if section.settings.title != blank %}
+					<h3 class="title align-center no-margin">{{ section.settings.title }}</h3>
+				{% endif %}
+
+				{% if section.settings.text != blank %}
+					<div class="text align-center">{{ section.settings.text }}</div>
+				{% endif %}
+
+				{% if section.settings.button-text != blank and section.settings.button-url != blank %}
+					<a class="btn btn-primary"
+					   href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="image-content">
+		{% if section.settings.image != blank %}
+			<img class="bg-image lazyload js"
+				 src="{{ section.settings.image | img_url: '200x' }}"
+				 data-src="{{ section.settings.image | img_url: '1200x' }}"
+				 data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+				 data-sizes="auto"
+				 alt="{{ section.settings.image.alt | escape }}">
+		{% endif %}
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Text with Image",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "title",
+            "label": "Title",
+            "default": "<p>Title</p>"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Content</p>"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+		{
+            "type": "text",
+            "id": "button-text",
+            "label": "Button text"
+        },
+        {
+            "type": "url",
+            "id": "button-url",
+            "label": "Button url"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Text with Image"
+        }
+    ]
+}
+{% endschema %}
