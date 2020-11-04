@@ -56,19 +56,22 @@ h1, h2, h3, h4, h5, h6 {
   color: $color_body_text;
   margin-top: 20px;
   margin-bottom: 20px;
-}
-h2{
   font-weight: 300;
+}
+h1, .h1{
+  font-size: 35px;
+  line-height: 1;
+  margin-top: 0;
+}
+h2, .h2{
   font-size: 50px;
   line-height: 55px;
 }
-h3{
-  font-weight: 300;
+h3, .h3{
   font-size: 35px;
   line-height: 40px;
 }
-h4{
-  font-weight: 300;
+h4, .h4{
   font-size: 32px;
   line-height: 30px;
 }
@@ -95,11 +98,13 @@ a.acive{
   font-size: 16px;
   line-height: 22px;
   color: $color_body_text_light;
-  padding: 10px 50px;
+  padding: 14px 50px;
   font-weight: bold;
   border-radius: 30px;
   width: max-content;
   cursor: pointer;
+  outline: none;
+  border: 0;
   &.btn-primary{
     background: $color_first;
   }
@@ -365,7 +370,6 @@ img{
       margin: 0 auto;
     }
   }
-
 }
 
 /**
@@ -373,7 +377,6 @@ img{
  */
 .text-with-image-section{
   position: relative;
-  background: #F9F9F9;
   .text-left-side{
     position: absolute;
     width: 100%;
@@ -416,7 +419,6 @@ img{
     }
   }
 }
-
 
 /**
     Section: Testimonials
@@ -462,7 +464,6 @@ img{
     }
   }
 }
-
 
 /**
     Section: Instagram
@@ -641,6 +642,44 @@ img{
     a{
       padding-left: 15px;
       padding-right: 15px;
+    }
+  }
+}
+
+
+/**
+    Section: Product
+ */
+.section-product-template{
+  padding-top: 80px;
+  padding-bottom: 80px;
+  .product-template-content{
+    display: flex;
+    justify-content: space-between;
+  }
+  .product-image{
+    width: calc(50% - 25px);
+    img{
+      width: 100%;
+    }
+  }
+  .product-info{
+    width: calc(50% - 25px);
+    .product-title{
+    }
+    .product-price{
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 33px;
+      color: $color_first;
+      margin-bottom: 20px;
+    }
+    .product-description{
+      font-size: 14px;
+      line-height: 19px;
+    }
+    .btn#AddToCart{
+      margin-top: 50px;
     }
   }
 }
