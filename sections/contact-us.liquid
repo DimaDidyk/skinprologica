@@ -1,6 +1,8 @@
 <div class="section-contact-us">
 	<div class="container">
-		<h3 class="align-center no-margin">Contact Us</h3>
+		{% if section.settings.title != blank %}
+			<h3 class="align-center no-margin">{{ section.settings.title }}</h3>
+		{% endif %}
 		<div class="contact-grid">
 
 			{% if settings.email != blank %}
@@ -34,7 +36,14 @@
 {% schema %}
 {
     "name": "Contact us",
-    "settings": [],
+    "settings": [
+		{
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+			"default": "Contact us"
+        }
+	],
     "presets": [
         {
             "name": "Contact us"
