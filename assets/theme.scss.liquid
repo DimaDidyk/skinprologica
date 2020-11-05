@@ -62,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
   color: $color_body_text;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-weight: 300;
+  font-weight: 400;
 }
 h1, .h1{
   font-size: 35px;
@@ -462,7 +462,7 @@ img{
     position: relative;
     height: 0;
     width: 50%;
-    padding-bottom: 45.8%;
+    padding-bottom: 45%;
     margin-right: 0;
     margin-left: auto;
     img{
@@ -488,6 +488,16 @@ img{
       margin-left: 0;
     }
   }
+}
+
+/**  Section: Featured Results   */
+.section-featured-results{
+  margin-top: 100px;
+  margin-bottom: 100px;
+  .featured-result{
+
+  }
+
 }
 
 /** Section: Video   */
@@ -613,6 +623,40 @@ img{
           }
         }
       }
+    }
+  }
+}
+
+/** Section: Banner   */
+.section-banner{
+  position: relative;
+  background: linear-gradient(96.71deg, #BEBEBE 5.08%, #FFFFFF 36.39%, #FFFFFF 68.59%, #ADADAD 105.7%);
+  height: 450px;
+
+  .vector{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    &.vector-left{
+      left: 0;
+    }
+    &.vector-right{
+      right: 0;
+    }
+  }
+  .banner-content{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    .text{
+      color: $color_body_text_2;
+      font-size: 20px;
+      line-height: 27px;
+      margin-top: 24px;
+      margin-bottom: 40px;
     }
   }
 }

@@ -1,0 +1,59 @@
+<div class="section-banner">
+
+	<img class="vector vector-left"
+		 src="{{ 'banner-vector-left.png' | asset_img_url: '800x' }}"
+		 alt="{{ section.settings.heading }}">
+
+	<img class="vector vector-right"
+		 src="{{ 'banner-vector-right.png' | asset_img_url: '800x' }}"
+		 alt="{{ section.settings.heading }}">
+
+	<div class="container h-100">
+		<div class="banner-content">
+			{% if section.settings.title != blank %}
+				<h3 class="title align-center no-margin">{{ section.settings.title }}</h3>
+			{% endif %}
+
+			{% if section.settings.text != blank %}
+				<div class="text align-center">{{ section.settings.text }}</div>
+			{% endif %}
+
+			{% if section.settings.button-text != blank and section.settings.button-url != blank %}
+				<a class="btn btn-primary btn-center" href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Banner",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+        },
+		{
+            "type": "text",
+            "id": "button-text",
+            "label": "Button text"
+        },
+        {
+            "type": "url",
+            "id": "button-url",
+            "label": "Button url"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Banner"
+        }
+    ]
+}
+{% endschema %}
