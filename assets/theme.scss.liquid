@@ -157,6 +157,20 @@ input{
   color: $color_body_text;
 }
 
+// responsive iframe
+.embed-responsive{
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.25%;
+  iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
 
 /**  Grid   */
 .container-fluid,
@@ -322,7 +336,6 @@ img{
 
 }
 
-
 /**  Section: Before and After   */
 .before-and-after-section{
   padding-top: 50px;
@@ -414,8 +427,6 @@ img{
 /**  Section: Text with Image   */
 .text-with-image-section{
   position: relative;
-
-
   .text-left-side{
     position: absolute;
     width: 100%;
@@ -475,6 +486,26 @@ img{
       overflow: hidden;
       margin-right: auto;
       margin-left: 0;
+    }
+  }
+}
+
+/** Section: Video   */
+.section-video{
+  padding-top: 140px;
+  padding-bottom: 100px;
+  .content{
+    .title{
+      width: 800px;
+      max-width: 100%;
+      margin: 30px auto;
+      strong{
+        color: $color_first;
+      }
+    }
+    img.logo{
+      margin-top: 10px;
+      float: right;
     }
   }
 }

@@ -1,0 +1,54 @@
+<div class="section-video">
+	<div class="container">
+		<div class="content">
+			{% if section.settings.title != blank %}
+				<h3 class="title align-center no-margin">{{ section.settings.title }}</h3>
+			{% endif %}
+
+			{% if section.settings.video-url != blank %}
+				<div class="embed-responsive">
+					<iframe width="1920" height="800" src="https://www.youtube.com/embed/{{ section.settings.video-url.id }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				</div>
+			{% endif %}
+
+			{% if section.settings.logo != blank %}
+				<img class="logo lazyload js"
+					 src="{{ section.settings.logo | img_url: '1x1' }}"
+					 data-src="{{ section.settings.logo | img_url: '120x' }}"
+					 alt="{{ section.settings.logo.alt | escape }}">
+			{% endif %}
+
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Video",
+    "settings": [
+        {
+            "type": "richtext",
+            "id": "title",
+            "label": "Title",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        },
+        {
+			"id": "video-url",
+			"type": "video_url",
+			"label": "Video URL",
+			"accept": ["youtube"],
+			"default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+        },
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Video"
+        }
+    ]
+}
+{% endschema %}
