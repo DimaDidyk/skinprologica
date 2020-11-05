@@ -1,0 +1,126 @@
+<div class="section-contact-form">
+	<div class="container">
+		<div class="contact-form-container">
+			<div class="contact-form">
+				<h3 class="form-title">Send us a Message</h3>
+
+				{%- form 'contact', class: 'form' -%}
+					<div class="form__input-row">
+						<div class="form__input-wrapper">
+							<input id="contact-form-name"
+								   type="text"
+								   placeholder="Name *"
+								   class="form__field form__field--text {% if customer.name != blank %}is-filled{% endif %}"
+								   name="contact[name]" aria-label="Name"
+								   required
+								   {% if customer %}value="{{ customer.name }}"{% endif %}>
+						</div>
+						<div class="form__input-wrapper">
+							<input id="contact-form-email"
+								   type="email"
+								   placeholder="Email *"
+								   class="form__field form__field--text {% if customer.email != blank %}is-filled{% endif %}"
+								   name="contact[email]"
+								   aria-label="Email"
+								   required
+								   {% if customer %}value="{{ customer.email }}"{% endif %}>
+						</div>
+					</div>
+
+					<div class="form__input-row">
+					{%- for block in section.blocks -%}
+						{%- assign field_title = block.settings.title -%}
+
+						{%- if field_title == blank -%}
+							{%- capture field_title -%}Custom field {% increment custom_field %}{%- endcapture -%}
+						{%- endif -%}
+
+						<div class="form__input-wrapper form__input-wrapper--labelled">
+							<input id="contact-form-{{ field_title | handle }}"
+								   type="text"
+								   placeholder="{{ field_title }}"
+								   class="form__field form__field--text" name="contact[{{ field_title | escape }}]"
+								   aria-label="{{ block.settings.title | escape }}"
+								   {% if block.settings.is_required %}required{% endif %}>
+						</div>
+						{%- endfor -%}
+					</div>
+
+					<div class="form__input-row">
+						<div class="form__input-wrapper form__input-wrapper-100">
+							<input id="contact-form-message"
+									  placeholder="Message"
+									  name="contact[body]"
+									  rows="2"
+									  class="form__field form__field--textarea"
+									  aria-label="Message">
+						</div>
+					</div>
+
+					<div class="form-status">
+						{%- if form.posted_successfully? -%}
+							<p class="alert alert--success">{{ 'contact.form.post_success' | t }}</p>
+						{%- endif -%}
+						{%- if form.errors -%}
+							<div class="alert alert--error">
+								<div class="alert__error-list">
+									{%- for field in form.errors -%}
+										{%- if field == 'form' -%}
+											<div class="alert__error-item">{{ form.errors.messages[field] }}</div>
+										{%- else -%}
+											<div class="alert__error-item">{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</div>
+										{%- endif -%}
+									{%- endfor -%}
+								</div>
+							</div>
+						{%- endif -%}
+					</div>
+
+					<button type="submit" class="btn btn-primary btn-center">Send</button>
+				{%- endform -%}
+			</div>
+			<div class="map">
+				{{ section.settings.map-iframe }}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Contact form",
+    "settings": [
+ 		{
+            "type": "html",
+            "id": "map-iframe",
+            "label": "Map Iframe",
+            "info": "Learn more about [Iframe](https://support.google.com/maps/answer/144361?co=GENIE.Platform%3DDesktop&hl)"
+        }
+	],
+	"blocks": [
+		{
+		  "type": "text",
+		  "name": "Text field",
+		  "settings": [
+			{
+			  "type": "text",
+			  "id": "title",
+			  "label": "Name",
+			  "default": "Custom field"
+			},
+			{
+			  "type": "checkbox",
+			  "id": "is_required",
+			  "label": "Field is required",
+			  "default": false
+			}
+		  ]
+		}
+	],
+    "presets": [
+        {
+            "name": "Contact form"
+        }
+    ]
+}
+{% endschema %}

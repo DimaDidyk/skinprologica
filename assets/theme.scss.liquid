@@ -1,12 +1,10 @@
 html, body{
   margin: 0;
   padding: 0;
-  font-family: "Open Sans";
+
 }
 
-/**
-    Fonts
- */
+/**  Fonts   */
 {% assign font_n3 = settings.font_n3 %}
 {% assign font_n4 = settings.font_n4 %}
 {% assign font_n6 = settings.font_n6 %}
@@ -14,8 +12,15 @@ html, body{
 {{ font_n4 | font_face }}
 {{ font_n6 | font_face }}
 
-/**
-    Colors
+input,
+textarea,
+select,
+.form-status,
+body{
+  font-family: "Open Sans";
+}
+
+/**  Colors
 */
 $color_background: {{ settings.color_background }};
 $color_background_light: {{ settings.color_background_light }};
@@ -29,6 +34,8 @@ $color_body_text_light: {{ settings.color_background_light }};
 $color_first: {{ settings.color_first }};
 $color_second: {{ settings.color_second }};
 $color_borders: {{ settings.color_borders }};
+
+$border-custom-color: #9A8F8F;
 .color_background{
   background: $color_background;
 }
@@ -46,8 +53,7 @@ $color_borders: {{ settings.color_borders }};
   box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.05);
 }
 
-/**
-    Typography
+/**  Typography
 */
 body{
   background: $color_background;
@@ -112,14 +118,13 @@ a.acive{
     background: $color_second;
   }
   &.btn-center{
+    display: block;
     margin-left: auto;
     margin-right: auto;
   }
 }
 
-/**
-    Grid
- */
+/**  Grid   */
 .container-fluid,
 .container{
   max-width: 100%;
@@ -133,7 +138,7 @@ a.acive{
   width: 100%;
 }
 .container{
-  width: 1130px;
+  width: 1170px;
 }
 .container-fluid.container-no-padding,
 .container.container-no-padding{
@@ -154,9 +159,7 @@ img{
 }
 
 
-/**
-    Header
-*/
+/**  Header */
 .header-top{
   height: 94px;
   display: flex;
@@ -229,9 +232,7 @@ img{
   }
 }
 
-/**
-    Section: Hero
- */
+/**  Section: Hero   */
 .hero{
   position: relative;
   height: 644px;
@@ -245,15 +246,22 @@ img{
     object-position: right;
     object-fit: contain;
   }
+  .hero-sub-bg{
+    position: absolute;
+    top: 50px;
+    right: 0;
+  }
 
   .gradient{
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    width: 60%;
+    width: 100%;
     z-index: -2;
-
+    background: linear-gradient(278.92deg, #994847 5.29%, #CA9097 88.07%);
+  }
+  &.hero-index .gradient{
     background: linear-gradient(180deg, #959B9B 0%, #919294 51.63%, #848484 98.64%);
   }
   .hero-content{
@@ -280,9 +288,8 @@ img{
 
 }
 
-/**
-    Section: Before and After
- */
+
+/**  Section: Before and After   */
 .before-and-after-section{
   padding-top: 50px;
   padding-bottom: 50px;
@@ -325,9 +332,7 @@ img{
   }
 }
 
-/**
-    Section: Our services
- */
+/**  Section: Our services   */
 .our-services-section{
   padding-top: 50px;
   padding-bottom: 150px;
@@ -372,9 +377,7 @@ img{
   }
 }
 
-/**
-    Section: Text with Image
- */
+/**  Section: Text with Image   */
 .text-with-image-section{
   position: relative;
   .text-left-side{
@@ -420,9 +423,7 @@ img{
   }
 }
 
-/**
-    Section: Testimonials
- */
+/**  Section: Testimonials   */
 .testimonials-section{
   padding: 70px 20px;
   box-sizing: border-box;
@@ -465,17 +466,13 @@ img{
   }
 }
 
-/**
-    Section: Instagram
- */
+/**  Section: Instagram   */
 .instagram-section{
   padding-top: 50px;
   padding-bottom: 50px;
 }
 
-/**
-    Section: Rich text
- */
+/**  Section: Rich text   */
 .rich-text{
   padding-top: 76px;
   padding-bottom: 50px;
@@ -506,9 +503,7 @@ img{
   }
 }
 
-/**
-    Section: Gift
- */
+/**  Section: Gift   */
 .gift-section{
   padding-bottom: 180px;
   padding-top: 100px;
@@ -518,6 +513,15 @@ img{
     padding-top: 40px;
     padding-bottom: 90px;
     color: $color_body_text_light;
+    position: relative;
+    .bg-image{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .text-content{
       width: 600px;
       max-width: 100%;
@@ -535,9 +539,7 @@ img{
   }
 }
 
-/**
-    Section: Contact Us
- */
+/**  Section: Contact Us   */
 .section-contact-us{
   h3{
     padding-top: 50px;
@@ -574,9 +576,7 @@ img{
   }
 }
 
-/**
-    Footer
- */
+/**  Footer   */
 .footer-content{
   padding-top: 44px;
   padding-bottom: 30px;
@@ -646,10 +646,99 @@ img{
   }
 }
 
+/**  Section contact form   */
+.section-contact-form{
+  margin-bottom: 10px;
+  .contact-form-container{
+    display: flex;
+    justify-content: space-between;
+    min-height: 465px;
+    margin-top: 125px;
+    border: 1px solid $border-custom-color;
+    box-sizing: border-box;
+    box-shadow: 0 25px 100px rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    overflow: hidden;
+    .contact-form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 450px;
+      max-width: 100%;
+      margin: 0 auto;
+      .form-title{
+        font-size: 40px;
+        margin-bottom: 60px;
+      }
+      form{
+        width: 100%;
+      }
+      .form-status{
+        text-align: center;
+        padding-bottom: 20px;
+        font-weight: bold;
+        .alert--success{
+          color: #73bc66;
+        }
+        .alert__error-list{
+          color: $color_first;
+        }
+      }
+      .btn{
+        margin-bottom: 30px;
+      }
+    }
+    .map{
+      display: flex;
+      border-radius: 10px;
+      border: 1px solid $border-custom-color;
+      margin-bottom: -1px;
+      margin-top: -1px;
+      position: relative;
+      overflow: hidden;
+      right: -2px;
+      iframe{
+        width: 490px;
+        height: 100%;
+      }
+    }
+  }
+}
 
-/**
-    Section: Product
- */
+.btn{
+  min-width: 200px;
+}
+// forms
+.form__input-row{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .form__input-wrapper{
+    width: calc(50% - 30px);
+    margin-bottom: 30px;
+  }
+  .form__input-wrapper-100{
+    width: 100%;
+  }
+}
+
+textarea,
+input{
+  outline: none;
+  padding: 13px 0;
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid $border-custom-color;
+  font-size: 14px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  color: $color_body_text;
+}
+
+
+/**  Section: Product   */
 .section-product-template{
   padding-top: 80px;
   padding-bottom: 80px;
