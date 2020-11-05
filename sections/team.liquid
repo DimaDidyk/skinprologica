@@ -1,0 +1,102 @@
+<div class="section-team">
+	<div class="container">
+
+		{% if section.settings.title != blank %}
+			<h3 class="title align-center no-margin">{{ section.settings.title }}</h3>
+		{% endif %}
+
+		{% if section.settings.text != blank %}
+			<div class="text align-center">{{ section.settings.text }}</div>
+		{% endif %}
+
+		<div class="employers">
+			{% for block in section.blocks %}
+
+				<div class="employee-item{% if forloop.index0 == 0 %} director{% endif %}">
+					{% if block.settings.avatar != blank %}
+						<div class="avatar-container">
+							<img class="vector-bg"
+								 src="{{ 'our-team-vector.png' | asset_img_url: '400x' }}"
+								 alt="{{ section.settings.heading }}">
+							<img class="avatar lazyload"
+								 src="{{ block.settings.avatar | img_url: '50x50' }}"
+								 data-src="{{ block.settings.avatar | img_url: '250x250' }}"
+								 alt="{{ block.settings.avatar.alt }}">
+						</div>
+					{% endif %}
+
+					<div class="info">
+						{% if block.settings.name != blank %}
+							<div class="name">{{ block.settings.name }}</div>
+						{% endif %}
+						{% if block.settings.employee != blank %}
+							<div class="employee-position">{{ block.settings.employee }}</div>
+						{% endif %}
+						{% if block.settings.desc != blank %}
+							<div class="description">{{ block.settings.desc }}</div>
+						{% endif %}
+					</div>
+				</div>
+
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Our Team",
+	"max_blocks": 5,
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        }
+    ],
+	"blocks": [
+		{
+			"type": "employee",
+			"name": "Employee",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "avatar",
+					"label": "Avatar"
+				},
+				{
+					"type": "text",
+					"id": "name",
+					"label": "Name"
+				},
+				{
+					"type": "text",
+					"id": "employee",
+					"label": "Employee"
+				},
+				{
+					"type": "richtext",
+					"id": "desc",
+					"label": "Description"
+				}
+			]
+		}
+	],
+    "presets": [
+        {
+            "name": "Our Team"
+        }
+    ]
+}
+{% endschema %}
+
+{% stylesheet %}
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+{% endstylesheet %}
