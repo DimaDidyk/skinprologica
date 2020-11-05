@@ -414,6 +414,8 @@ img{
 /**  Section: Text with Image   */
 .text-with-image-section{
   position: relative;
+
+
   .text-left-side{
     position: absolute;
     width: 100%;
@@ -432,6 +434,9 @@ img{
     box-sizing: border-box;
     .title{
       margin-bottom: 20px;
+    }
+    .logo{
+      margin: 20px auto;
     }
     .text{
       font-size: 16px;
@@ -453,6 +458,23 @@ img{
       position: absolute;
       right: 0;
       width: 100%;
+    }
+  }
+
+  &.inverse{
+    .text-left-side{
+      .text-content{
+        float: right;
+        padding-right: 0;
+        padding-left: 64px;
+      }
+    }
+    .image-content{
+      padding-bottom: 37%;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-right: auto;
+      margin-left: 0;
     }
   }
 }
