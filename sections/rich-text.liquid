@@ -6,7 +6,11 @@
 			{% endif %}
 
 			{% if section.settings.sub-title != blank %}
-				<h4 class="align-center">{{ section.settings.sub-title }}</h4>
+				{% if template == 'index' %}
+					<h4 class="align-center">{{ section.settings.sub-title }}</h4>
+				{% else %}
+					<div class="sub-text align-center">{{ section.settings.sub-title }}</div>
+				{% endif %}
 			{% endif %}
 
 			{% if section.settings.richtext != blank %}
@@ -18,7 +22,6 @@
 					<a class="btn btn-secondary"
 					   href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
 				{% endif %}
-
 				{% if section.settings.button-text-2 != blank and section.settings.button-url-2 != blank %}
 					<a class="btn btn-primary"
 					   href="{{ section.settings.button-url-2 }}">{{ section.settings.button-text-2 }}</a>
