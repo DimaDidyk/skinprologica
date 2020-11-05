@@ -1,0 +1,40 @@
+{% render 'hero' %}
+
+{% schema %}
+{
+    "name": "Hero (Schedule)",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "hero-image",
+            "label": "Hero image"
+        },
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Heading"
+        },
+        {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        },
+        {
+            "type": "text",
+            "id": "button-text",
+            "label": "Button text"
+        },
+        {
+            "type": "url",
+            "id": "button-url",
+            "label": "Button url"
+        }
+    ],
+	"presets": [
+		{
+			"name": "Hero"
+		}
+	]
+}
+{% endschema %}
