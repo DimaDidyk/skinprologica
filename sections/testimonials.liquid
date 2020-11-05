@@ -1,46 +1,48 @@
-<div class="testimonials-section color_background_light">
-	<div class="container">
-		<!-- Swiper Slider -->
-		<div id="testimonials-slider" class="swiper-container testimonials-slider">
-			<div class="swiper-wrapper">
-				{% for block in section.blocks %}
-					<div class="swiper-slide">
-						<div class="item">
-							{% if block.settings.avatar != blank %}
-								<img class="avater lazyload"
-									 src="{{ block.settings.avatar | img_url: '50x50' }}"
-									 data-src="{{ block.settings.avatar | img_url: '250x250' }}"
-									 alt="{{ block.settings.avatar.alt }}">
-							{% endif %}
+{% if section.blocks.size > 0 %}
+	<div class="testimonials-section color_background_light">
+		<div class="container">
+			<!-- Swiper Slider -->
+			<div id="testimonials-slider" class="swiper-container testimonials-slider">
+				<div class="swiper-wrapper">
+					{% for block in section.blocks %}
+						<div class="swiper-slide">
+							<div class="item">
+								{% if block.settings.avatar != blank %}
+									<img class="avater lazyload"
+										 src="{{ block.settings.avatar | img_url: '50x50' }}"
+										 data-src="{{ block.settings.avatar | img_url: '250x250' }}"
+										 alt="{{ block.settings.avatar.alt }}">
+								{% endif %}
 
-							<div class="stars">
-								{% for i in (1..5) %}
-									<div class="{% if block.settings.stars < i %}opacity{% endif %}">
-										{% render 'icon-star' %}
-									</div>
-								{% endfor %}
+								<div class="stars">
+									{% for i in (1..5) %}
+										<div class="{% if block.settings.stars < i %}opacity{% endif %}">
+											{% render 'icon-star' %}
+										</div>
+									{% endfor %}
+								</div>
+
+								{% if block.settings.comment != blank %}
+									<div class="comment align-center">{{ block.settings.comment }}</div>
+								{% endif %}
+
+								{% if block.settings.name != blank %}
+									<div class="name align-center">{{ block.settings.name }}</div>
+								{% endif %}
 							</div>
-
-							{% if block.settings.comment != blank %}
-								<div class="comment align-center">{{ block.settings.comment }}</div>
-							{% endif %}
-
-							{% if block.settings.name != blank %}
-								<div class="name align-center">{{ block.settings.name }}</div>
-							{% endif %}
 						</div>
-					</div>
-				{% endfor %}
-			</div>
-			<!-- Add Pagination -->
-			<div class="swiper-pagination"></div>
+					{% endfor %}
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
 
-		</div><!-- #Swiper Slider -->
-		<!-- Add Arrows -->
-		<div id="testimonials-slider-next" class="swiper-button-next"></div>
-		<div id="testimonials-slider-prev" class="swiper-button-prev"></div>
+			</div><!-- #Swiper Slider -->
+			<!-- Add Arrows -->
+			<div id="testimonials-slider-next" class="swiper-button-next"></div>
+			<div id="testimonials-slider-prev" class="swiper-button-prev"></div>
+		</div>
 	</div>
-</div>
+{% endif %}
 
 {% schema %}
 {

@@ -9,9 +9,13 @@
 			 data-sizes="auto"
 			 alt="{{ section.settings.hero-image.alt | escape }}">
 
-		{% comment %}<img class="hero-sub-bg"{% endcomment %}
-			 {% comment %}src="{{ 'hero-vector.png' | asset_img_url: '500x500' }}"{% endcomment %}
-			 {% comment %}alt="{{ section.settings.heading }}">{% endcomment %}
+		{% assign vector = 'hero-vector-1.png' %}
+		{% if template == 'index' %}
+			{% assign vector = 'hero-vector-2.png' %}
+		{% endif %}
+		<img class="hero-sub-bg hero-vector-1"
+			 src="{{ vector | asset_img_url: '800x800' }}"
+			 alt="{{ section.settings.heading }}">
 	{% endif %}
 
 	<div class="container h-100">
