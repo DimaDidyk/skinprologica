@@ -1,0 +1,57 @@
+<div class="section-gallery-grid">
+	<div class="container">
+		<div class="gallery-grid-container">
+			{% for block in section.blocks %}
+				<div class="image"
+					style="
+					grid-column: span {{ block.settings.column-span }};
+					grid-row: span {{ block.settings.row-span }};"
+				>
+					{% if block.settings.image != blank %}
+						<img class="lazyload"
+							 src="{{ block.settings.image | img_url: '1x1' }}"
+							 data-src="{{ block.settings.image | img_url: '800x800' }}"
+							 alt="{{ block.settings.image.alt }}">
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Gallery grid",
+    "settings": [],
+	"blocks": [
+		{
+			"type": "image",
+			"name": "Image",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "text",
+					"id": "column-span",
+					"label": "Column span",
+					"default": "1"
+				},
+				{
+					"type": "text",
+					"id": "row-span",
+					"label": "Row span",
+					"default": "1"
+				}
+			]
+		}
+	],
+    "presets": [
+        {
+            "name": "Gallery grid"
+        }
+    ]
+}
+{% endschema %}
