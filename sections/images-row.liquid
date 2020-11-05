@@ -1,0 +1,44 @@
+{% if section.blocks.size > 0 %}
+	<div class="section-images-row">
+		<div class="container" style="width: 1300px;">
+			<div class="images-row">
+				{% for block in section.blocks %}
+					<div class="image">
+						{% if block.settings.image != blank %}
+							<img class="lazyload"
+								 src="{{ block.settings.image | img_url: '1x1' }}"
+								 data-src="{{ block.settings.image | img_url: '300x300' }}"
+								 alt="{{ block.settings.image.alt }}">
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Images row",
+	"max_blocks": 4,
+    "settings": [],
+	"blocks": [
+		{
+			"type": "image",
+			"name": "Image",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				}
+			]
+		}
+	],
+    "presets": [
+        {
+            "name": "Images row"
+        }
+    ]
+}
+{% endschema %}
