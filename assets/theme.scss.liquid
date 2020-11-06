@@ -296,11 +296,21 @@ img{
     object-position: right;
     object-fit: contain;
   }
+  &.hero-index .bg-image{
+    object-fit: cover;
+  }
   .hero-sub-bg{
     position: absolute;
     top: 0;
     right: 10px;
     z-index: -2;
+  }
+  &.hero-index .hero-sub-bg{
+    z-index: 1;
+    transform: rotate(-19deg);
+    width: 700px;
+    top: -45px;
+    right: 33px;
   }
   .gradient{
     position: absolute;
