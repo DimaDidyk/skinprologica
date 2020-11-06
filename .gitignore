@@ -3,7 +3,7 @@
 config/settings_data.json
 
 # globs
-*.png
+#*.png
 
 # regex
 /\.(txt|gif|bat)$/
