@@ -12,6 +12,7 @@
     {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
 
     <link rel="preload" href="{{ 'swiper-bundle.min.js' | asset_url }}" as="script">
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" async="async"></script>
     <link rel="preload" href="{{ 'theme.js' | asset_url }}" as="script">
     <link rel="preload" href="{{ 'lazysizes.js' | asset_url }}" as="script">
 
@@ -37,7 +38,6 @@
     {% section 'gift' %}
     {% section 'footer' %}
 
-    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" async="async"></script>
     <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
 </body>

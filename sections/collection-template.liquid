@@ -1,0 +1,53 @@
+{% assign current_collection = collection %}
+<div class="section-collection-template">
+	<div class="container">
+		<div class="collection-list">
+
+			<div class="collection-item {% if collections['all'].handle == current_collection.handle %}active{% endif %}">
+				<a href="{{ collections['all'].url }}">
+					<div class="icon">
+						{% render 'icon', name: 'icon-all' %}
+					</div>
+					<div class="collection-title">{{ collections['all'].handle | capitalize }}</div>
+				</a>
+			</div>
+
+			{% for collection in collections %}
+				<div class="collection-item {% if collection.handle == current_collection.handle %}active{% endif %}">
+					<a href="{{ collection.url }}">
+						<div class="icon">
+							{% assign icon_name = 'icon-' | append: collection.handle %}
+							{% render 'icon', name: icon_name %}
+						</div>
+						<div class="collection-title">{{ collection.title }}</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="container container-large">
+		<div class="product-grid">
+			{% paginate collection.products by 200 %}
+				{% for product in collection.products %}
+					{% render 'product-grid-item', product: product %}
+				{% endfor %}
+			{% endpaginate %}
+		</div>
+	</div>
+</div>
+
+
+
+{% schema %}
+{
+    "name": "Collection",
+    "settings": [
+        {
+            "type": "text",
+            "id": "boxes-title",
+            "label": "Boxes title",
+            "default": "Questions? We’ve Got Answers."
+        }
+    ]
+}
+{% endschema %}

@@ -5,7 +5,7 @@
             {% for tag in article.tags %}
                 {% if tag contains 'icon' %}
                     <span class="article-icon">
-                        {% render 'article-icons', tag: tag %}
+                        {% render 'icon', name: tag %}
                     </span>
                 {% endif %}
             {% endfor %}

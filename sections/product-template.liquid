@@ -1,3 +1,6 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign description = product.description | split: 'SEPARATOR' %}
+
 <div class="section-product-template">
 	<div class="container">
 		<div class="product-template-content">
@@ -16,11 +19,9 @@
 
 			<div class="product-info">
 				<h1 class="product-title">{{ product.title }}</h1>
-
-				{% assign current_variant = product.selected_or_first_available_variant %}
 				<div class="product-price">{{ current_variant.price | money }}</div>
 
-				<div class="product-description">{{ product.description }}</div>
+				<div class="product-description">{{ description[0] }}</div>
 				<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
 					<select name="id" id="productSelect" hidden>
 						{% for variant in product.variants %}
@@ -36,6 +37,7 @@
 						{% endfor %}
 					</select>
 					<input type="number" id="Quantity" name="quantity" value="1" min="1" class="hidden">
+					<input type="hidden" name="return_to" value="/checkout" />
 					<button type="submit"
 							name="add"
 							class="btn btn-primary"
@@ -46,11 +48,61 @@
 	</div>
 </div>
 
+{% if description[1] != blank %}
+	<div class="product-template-boxes">
+		<div class="container">
+			<h2 class="title align-center">{{ section.settings.boxes-title }}</h2>
+			{{ description[1] }}
+		</div>
+	</div>
+{% endif %}
+
+{% if recommendations.products_count > 0 %}
+	<div class="product-recommendations-section">
+		<div class="container">
+			<!-- Swiper Slider -->
+			<div id="product-recommendations-slider" class="swiper-container product-recommendations-slider">
+				<div class="swiper-wrapper">
+					{%- for product in recommendations.products -%}
+						<div class="swiper-slide">
+							{% render 'product-grid-item', product: product %}
+						</div>
+					{% endfor %}
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+
+			</div><!-- #Swiper Slider -->
+			<!-- Add Arrows -->
+			<div id="recommendations-slider-next" class="swiper-button-next"></div>
+			<div id="recommendations-slider-prev" class="swiper-button-prev"></div>
+		</div>
+	</div>
+{% endif %}
+
+
 {% schema %}
 {
     "name": "Product Template",
     "settings": [
-
+		{
+			"type": "text",
+			"id": "boxes-title",
+			"label": "Boxes title",
+			 "default": "Questions? We’ve Got Answers."
+		}
 	]
 }
 {% endschema %}
+
+{% javascript %}
+var testimonialsSlider = new Swiper('#product-recommendations-slider', {
+    pagination: {
+        el: '.swiper-pagination',
+    },
+    navigation: {
+        nextEl: '#recommendations-slider-next',
+        prevEl: '#recommendations-slider-prev',
+    }
+});
+{% endjavascript %}

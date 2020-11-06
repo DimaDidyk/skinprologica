@@ -1,0 +1,18 @@
+<div class="product-grid-item">
+	<a href="{{ product.url }}">
+		<span class="img-wrap">
+			<img class="product-img lazyload"
+				 src="{{ product.featured_image | img_url: '1x1' }}"
+				 data-src="{{ product.featured_image | img_url: '200x200' }}"
+				 alt="{{ product.featured_image.alt }}" />
+		</span>
+		<span class="product-info">
+			<div class="product-title">{{ product.title }}</div>
+			<div class="some-text"><b>Small Area 6 sessions</b></div>
+			<div class="product-price"><strong>{{ product.price | money }}</strong></div>
+			<span class="desc">
+				Broken facial capillaries, also known as telangiectasia...
+			</span>
+		</span>
+	</a>
+</div>
