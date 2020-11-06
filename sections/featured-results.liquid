@@ -1,9 +1,52 @@
 <div class="section-featured-results">
-	<div class="container">
-		<h3 class="title align-center no-margin">Featured Results</h3>
+	<div class="container container-large">
+		<h2 class="title align-center no-margin">Featured Results</h2>
 
-		<div class="featured-result">
-
+		<div class="featured-results">
+			{% for block in section.blocks %}
+				<div class="item">
+					{% if block.settings.image != blank %}
+						<img class="lazyload"
+							 src="{{ block.settings.image | img_url: '1x1' }}"
+							 data-src="{{ block.settings.image | img_url: '400x400' }}"
+							 alt="{{ block.settings.image.alt }}">
+					{% endif %}
+					{% if block.settings.title != blank %}
+						<h3 class="title align-center">{{ block.settings.title }}</h3>
+					{% endif %}
+				</div>
+			{% endfor %}
 		</div>
 	</div>
 </div>
+
+{% schema %}
+{
+    "name": "Featured Results",
+	"max_blocks": 3,
+	"blocks": [
+		{
+			"type": "item",
+			"name": "Item",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "richtext",
+					"id": "title",
+					"label": "Title",
+					"default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+				}
+			]
+		}
+	],
+    "presets": [
+        {
+            "name": "Featured Results"
+        }
+    ]
+}
+{% endschema %}

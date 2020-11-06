@@ -1,7 +1,7 @@
 html, body{
   margin: 0;
   padding: 0;
-
+  overflow-x: hidden;
 }
 
 /**  Fonts   */
@@ -65,12 +65,12 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 h1, .h1{
-  font-size: 35px;
-  line-height: 1;
+  font-size: 50px;
+  line-height: 51px;
   margin-top: 0;
 }
 h2, .h2{
-  font-size: 50px;
+  font-size: 45px;
   line-height: 55px;
 }
 h3, .h3{
@@ -187,6 +187,9 @@ input{
 }
 .container{
   width: 1170px;
+}
+.container-large{
+  width: 1260px;
 }
 .container-fluid.container-no-padding,
 .container.container-no-padding{
@@ -361,21 +364,24 @@ img{
       box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
       border-radius: 20px;
       width: calc(20% - 12px);
+      max-width: 214px;
       margin-bottom: 80px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      img{
+      img.item-image{
         width: 100%;
+        margin-bottom: 12px;
       }
       .logo{
         width: 80px;
-        margin: 12px auto 8px;
+        margin: 0 auto;
         img{
           object-fit: contain;
         }
       }
       .title{
+        margin-top: 10px;
         padding-left: 22px;
         padding-right: 22px;
         font-size: 16px;
@@ -505,9 +511,34 @@ img{
 /**  Section: Featured Results   */
 .section-featured-results{
   margin-top: 100px;
-  margin-bottom: 100px;
-  .featured-result{
+  margin-bottom: 20px;
+  .featured-results{
+    margin-top: 75px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
+    .item{
+      width: 380px;
+      min-width: 380px;
+      background: #FFFFFF;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      img{
+        width: 100%;
+      }
+      .title{
+        min-height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
+    }
   }
 
 }
@@ -800,7 +831,7 @@ img{
 
 /**  Section: Contact Us   */
 .section-contact-us{
-  h3{
+  .title{
     padding-top: 50px;
     padding-bottom: 50px;
   }

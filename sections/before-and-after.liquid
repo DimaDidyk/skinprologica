@@ -1,13 +1,13 @@
-<div class="before-and-after-section">
-	<div class="container">
-		<h3 class="align-center">Before and After</h3>
-		<div class="before-container">
+<div class="before-and-after-section {% if template == 'index' %}template-index{% endif %}">
+	<div class="container {% if template != 'index' %}container-large{% endif %}">
+		<h2 class="align-center">Before and After</h2>
+		<div class="before-container" id="before-after-all-items">
 
 			{% for block in section.blocks %}
 				<div class="item">
 					{% if block.settings.image != blank %}
-						<img class="lazyload"
-							 src="{{ block.settings.image | img_url: '500x50' }}"
+						<img class="item-image lazyload"
+							 src="{{ block.settings.image | img_url: '1x1' }}"
 							 data-src="{{ block.settings.image | img_url: '250x250' }}"
 							 alt="{{ block.settings.image.alt }}">
 					{% endif %}
@@ -30,11 +30,47 @@
 				</div>
 			{% endfor %}
 
+			<div id="myDiv"></div>
+
+
 		</div>
 
-		<div class="btn btn-primary btn-center">See more</div>
+
+		{% if template == 'index' %}
+			<div class="btn btn-primary btn-center" id="get-all-before-after">See more</div>
+		{% endif %}
 	</div>
 </div>
+
+<script>
+    function load(url, id, callback) {
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if ( request.readyState === 4 || request.readyState === 200 ) {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(request.responseText, "text/html");
+                let allItemsHTML = doc.getElementById(id);
+                document.getElementById(id).innerHTML = allItemsHTML.innerHTML;
+                callback();
+            }
+        }
+        request.open('GET', url, true);
+        request.send('');
+    }
+
+    let buttonElement = document.getElementById('get-all-before-after');
+    buttonElement.addEventListener('click', function(){
+        let button = this;
+        load(
+            '{{shop.url}}/pages/before-and-after',
+			'before-after-all-items',
+			function(){
+                console.log('hide');
+                button.style.display = 'none';
+        	}
+        );
+    });
+</script>
 
 {% schema %}
 {
