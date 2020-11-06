@@ -1,41 +1,25 @@
-{% assign number_of_comments = article.comments_count %}
-{% if comment and comment.created_at %}
-  {% assign number_of_comments = article.comments_count %}
-{% endif %}
+<div class="article-template">
+    <div class="container">
+        <div class="article-banner">
 
-<h1>{{ article.title }}</h1>
-{% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
-{% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>{% endcapture %}
-{{ article.author }} @ {{ article.created_at }}
+            {% for tag in article.tags %}
+                {% if tag contains 'icon' %}
+                    <span class="article-icon">
+                        {% render 'article-icons', tag: tag %}
+                    </span>
+                {% endif %}
+            {% endfor %}
 
-<div>{{ article.content }}</div>
-{% if blog.comments_enabled? %}
-  <h2>{{ number_of_comments }} comments</h2>
-  {% paginate article.comments by 5 %}
-    {% for comment in article.comments %}
-      <div>
-        <div>{{ comment.content }}</div>
-        {{ comment.author }} @ {{ comment.created_at }}
-      </div>
-    {% endfor %}
-    {% if paginate.pages > 1 %}
-      {{ paginate | default_pagination }}
-    {% endif %}
-  {% endpaginate %}
+            <h3 class="article-title align-center">{{ article.title }}</h3>
+            <img src="{{ article.image | img_url: '1x1' }}"
+                 data-src="{{ article.image| img_url: 'large' }}"
+                 alt="{{  article.title | escape }}"
+                 class="lazyload article-image"
+            >
+        </div>
 
-  <div>
-    {% form 'new_comment', article %}
-      {{ form.errors | default_errors }}
-      <label for="CommentAuthor">name</label>
-      <input type="text" name="comment[author]" id="CommentAuthor" placeholder="name" value="{{ form.author }}" autocapitalize="words">
-
-      <label for="CommentEmail">email</label>
-      <input type="email" name="comment[email]" id="CommentEmail" placeholder="email" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
-
-      <label for="CommentBody">message</label>
-      <textarea name="comment[body]" id="CommentBody" placeholder="message">{{ form.body }}</textarea>
-
-      <input type="submit" value="post">
-    {% endform %}
-  </div>
-{% endif %}
+        <div class="article-content">
+            <div>{{ article.content }}</div>
+        </div>
+    </div>
+</div>

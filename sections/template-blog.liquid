@@ -1,0 +1,55 @@
+<div class="template-blog">
+	<div class="container">
+
+		{% if section.settings.title != blank %}
+			<h3 class="title align-center no-margin">{{ section.settings.title }}</h3>
+		{% endif %}
+		{% if section.settings.richtext != blank %}
+			<div class="description align-center">{{ section.settings.richtext }}</div>
+		{% endif %}
+
+		<div class="articles-list">
+			{% paginate blog.articles by 100 %}
+				{% for article in blog.articles %}
+					<a href="{{ article.url }}" class="list-article-item">
+
+						{% for tag in article.tags %}
+							{% if tag contains 'icon' %}
+								<span class="article-icon">
+									{% render 'article-icons', tag: tag %}
+								</span>
+							{% endif %}
+						{% endfor %}
+
+						<h3 class="article-title align-center">{{ article.title }}</h3>
+					</a>
+				{% endfor %}
+			{% endpaginate %}
+		</div>
+
+	</div>
+</div>
+
+{% schema %}
+{
+    "name": "Blog",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "richtext",
+            "label": "Text",
+            "default": "<p>Default <em>richtext</em> <a href=\"https://example.com\">content</a></p>"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Blog"
+        }
+    ]
+}
+{% endschema %}
