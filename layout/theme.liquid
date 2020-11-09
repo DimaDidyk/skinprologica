@@ -32,7 +32,10 @@
         {{ content_for_layout }}
     </main>
 
-    {% section 'gift' %}
+    {% unless template == 'product' or template == 'blog' or template == 'article' or template == 'page.privacy-policy' %}
+        {% section 'gift' %}
+    {% endunless %}
+
     {% section 'footer' %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

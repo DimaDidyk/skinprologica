@@ -1226,6 +1226,70 @@ img{
   }
 }
 
+/** Section: Privacy Policy */
+.section-privacy-policy{
+  padding-top: 80px;
+  padding-bottom: 80px;
+  .heading{
+    .description{
+      width: 900px;
+      margin: 40px auto 60px;
+      max-width: 100%;
+      font-size: 20px;
+      line-height: 27px;
+      opacity: .5;
+    }
+  }
+  .policy-items{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 80px;
+    .policy-item{
+      display: flex;
+      margin-bottom: 34px;
+      .icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 86px;
+        min-height: 86px;
+        width: 86px;
+        height: 86px;
+        border-radius: 50%;
+        background: $color_first;
+        svg{
+          display: flex;
+          width: 50px;
+          height: 50px;
+        }
+      }
+      .text-content{
+        padding-left: 30px;
+
+      }
+      .title{
+        font-weight: bolder;
+        font-size: 20px;
+        line-height: 27px;
+        margin-bottom: 20px;
+      }
+      .desc{
+        font-size: 16px;
+        line-height: 22px;
+        em{
+          font-size: 14px;
+          line-height: 19px;
+          color: $color_first;
+          margin-bottom: 20px;
+          display: block;
+          font-style: inherit;
+        }
+      }
+    }
+  }
+}
+
+
 /** Section: Gallery grid */
 .section-gallery-grid{
   margin-top: 160px;
@@ -1250,6 +1314,7 @@ img{
 /** Template Blog */
 .template-blog{
   padding-top: 80px;
+  padding-bottom: 150px;
   .title{
     margin-bottom: 50px;
   }
@@ -1306,6 +1371,7 @@ img{
 
 /** Template Article */
 .article-template{
+  padding-bottom: 150px;
   .article-banner{
     position: relative;
     margin-top: 80px;
@@ -1397,7 +1463,6 @@ img{
     }
   }
 }
-
 
 .product-recommendations-section{
   padding-top: 40px;

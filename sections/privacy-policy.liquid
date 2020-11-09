@@ -1,0 +1,67 @@
+<div class="section-privacy-policy">
+	<div class="container">
+		<div class="heading">
+			{% if section.settings.title != blank %}
+				<h3 class="align-center no-margin">{{ section.settings.title }}</h3>
+			{% endif %}
+			{% if section.settings.description != blank %}
+				<div class="description align-center">{{ section.settings.description }}</div>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="policy-items">
+			{% for block in section.blocks %}
+				<div class="policy-item">
+					<div class="icon">
+						{% assign icon_title = block.settings.title | handle %}
+						{% render 'icon', name: icon_title %}
+					</div>
+					<div class="text-content">
+						<div class="title">{{ block.settings.title }}</div>
+						<div class="desc">{{ block.settings.description }}</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+
+{% schema %}
+{
+    "name": "Privacy Policy",
+	"max_blocks": 100,
+    "settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "richtext",
+			"id": "description",
+			"label": "Description"
+		}
+    ],
+	"blocks": [
+		{
+			"type": "policy",
+			"name": "Policy",
+			"settings": [
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "richtext",
+					"id": "description",
+					"label": "Description"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
