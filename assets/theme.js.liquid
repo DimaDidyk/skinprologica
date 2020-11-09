@@ -86,7 +86,7 @@ const theme = {
     },
 
     collection: {
-        dataTabs: tabSettings || [],
+        dataTabs: [] || tabSettings,
         init: function () {
             const locationPath = window.location.pathname.split('/');
             const pageTemplate = locationPath[locationPath.length - 2];
@@ -106,7 +106,7 @@ const theme = {
                     let collectionTemplate = '';
                     for (const tabContent of productByTab) {
                         if( tabContent.products.length > 0 ){
-                            collectionTemplate += theme.getTemplate.collectionTab(tabContent);
+                            collectionTemplate += _this.getTemplate.collectionTab(tabContent);
                         }
                     }
                     const collectionProducts = document.getElementById('collection-products');
@@ -161,11 +161,10 @@ const theme = {
             }
             return tabsObject;
         },
-    },
-    
-    getTemplate: {
-        productGridItem: function (product){
-            return `
+
+        getTemplate: {
+            productGridItem: function (product){
+                return `
             <div class="product-grid-item">
                 <a href="/products/${ product.handle }">
                     <span class="img-wrap">
@@ -183,9 +182,9 @@ const theme = {
                     </span>
                 </a>
             </div>`
-        },
-        collectionTab: function (tabContent){
-            let tabTemplate = `
+            },
+            collectionTab: function (tabContent){
+                let tabTemplate = `
                 <div class="product-tab unselectable">
                     <div class="product-tab-heading align-center">
                         <h3 class="heading">${tabContent.title}</h3>
@@ -193,15 +192,33 @@ const theme = {
                     <div class="product-tab-content">
                         <div class="product-grid">`;
 
-            for (const product of tabContent.products) {
-                tabTemplate += this.productGridItem(product);
+                for (const product of tabContent.products) {
+                    tabTemplate += this.productGridItem(product);
+                }
+                tabTemplate += `</div></div></div>`;
+                return tabTemplate;
             }
-            tabTemplate += `</div></div></div>`;
-            return tabTemplate;
+        },
+    },
+
+    product: {
+        init: function (){
+            console.log('init product');
+            this.productTabs();
+        },
+        productTabs: function (){
+            let productTabsItems = document.querySelectorAll('.product-template-boxes .heading');
+            for (const tabElement of productTabsItems) {
+                tabElement.addEventListener('click', function (){
+                    this.parentNode.classList.toggle('show-tab-content');
+                });
+            }
         }
     },
 
+
     init: function (){
+        this.product.init();
         this.collection.init();
     },
 }

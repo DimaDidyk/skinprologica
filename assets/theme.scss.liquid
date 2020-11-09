@@ -1337,20 +1337,22 @@ img{
   .article-content{
   }
 }
+
+// boxes content
 .box{
   box-shadow: 0 10px 20px rgba(136, 131, 131, 0.1);
   border-radius: 10px;
-  padding: 20px 40px;
   margin-bottom: 20px;
   .heading{
     font-size: 20px;
+    padding: 20px 40px;
     line-height: 21px;
-    margin-bottom: 18px;
   }
   .text,
   .text-column {
     font-size: 14px;
     line-height: 19px;
+    padding: 0 40px 20px;
     p{
       margin-bottom: 20px;
     }
@@ -1358,6 +1360,41 @@ img{
   .text-column{
     column-count: 2;
     column-gap: 80px;
+  }
+}
+
+// boxes-tabs Product page content
+.product-template-boxes{
+  .box{
+    .heading{
+      position: relative;
+      cursor: pointer;
+      &::after{
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-left: 2px solid $color_body_text;
+        border-bottom: 2px solid $color_body_text;
+        transform: rotate(-45deg);
+        position: absolute;
+        right: 30px;
+        top: 20px;
+        border-radius: 2px;
+        transition: all .3s;
+      }
+    }
+    .text{
+      display: none;
+      padding-top: 10px;
+    }
+    &.show-tab-content{
+      .text{
+        display: block;
+      }
+      .heading::after {
+        transform: rotate(45deg);
+      }
+    }
   }
 }
 
