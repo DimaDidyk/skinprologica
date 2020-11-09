@@ -1398,9 +1398,27 @@ img{
   }
 }
 
+
+.product-recommendations-section{
+  padding-top: 40px;
+  padding-bottom: 80px;
+  position: relative;
+  .recommendations-title{
+    color: $color_first;
+    font-size: 20px;
+    line-height: 21px;
+    margin-top: 50px;
+  }
+  .product-recommendations-slider{
+    padding-bottom: 50px;
+  }
+}
+
+
 /** Swiper custom style */
 .swiper-pagination-bullet{
   background-color: $color_first;
+  outline: none;
 }
 .swiper-button-next:after, .swiper-button-prev:after{
   font-weight: 900;
@@ -1408,4 +1426,5 @@ img{
 }
 .swiper-button-next, .swiper-button-prev{
   color: $color_first;
+  outline: none;
 }

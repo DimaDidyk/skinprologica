@@ -57,13 +57,15 @@
 	</div>
 {% endif %}
 
-{% if recommendations.products_count > 0 %}
-	<div class="product-recommendations-section">
+{% if recommendations.products_count == 0 %}
+	<div class="product-recommendations-section unselectable">
 		<div class="container">
+			<h3 class="recommendations-title align-center">With this procedure you may also like</h3>
+
 			<!-- Swiper Slider -->
 			<div id="product-recommendations-slider" class="swiper-container product-recommendations-slider">
 				<div class="swiper-wrapper">
-					{%- for product in recommendations.products -%}
+					{%- for product in collections['all'].products -%}
 						<div class="swiper-slide">
 							{% render 'product-grid-item', product: product %}
 						</div>
@@ -96,7 +98,9 @@
 {% endschema %}
 
 {% javascript %}
-var testimonialsSlider = new Swiper('#product-recommendations-slider', {
+let testimonialsSlider = new Swiper('#product-recommendations-slider', {
+    slidesPerView: 3,
+    spaceBetween: 15,
     pagination: {
         el: '.swiper-pagination',
     },

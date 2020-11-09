@@ -86,16 +86,7 @@ const theme = {
     },
 
     collection: {
-        dataTabs: [] || tabSettings,
-        init: function () {
-            const locationPath = window.location.pathname.split('/');
-            const pageTemplate = locationPath[locationPath.length - 2];
-            const pageHandle = locationPath[locationPath.length - 1];
-            if (pageTemplate === 'collections') {
-                this.render(pageHandle);
-            }
-            this.changeCollection();
-        },
+        dataTabs: [],
 
         render: function (collectionHandle){
             if (this.dataTabs.length > 0) {
@@ -199,13 +190,20 @@ const theme = {
                 return tabTemplate;
             }
         },
+
+        init: function () {
+            const locationPath = window.location.pathname.split('/');
+            const pageTemplate = locationPath[locationPath.length - 2];
+            const pageHandle = locationPath[locationPath.length - 1];
+            if (pageTemplate === 'collections') {
+                this.dataTabs = tabSettings;
+                this.render(pageHandle);
+            }
+            this.changeCollection();
+        },
     },
 
     product: {
-        init: function (){
-            console.log('init product');
-            this.productTabs();
-        },
         productTabs: function (){
             let productTabsItems = document.querySelectorAll('.product-template-boxes .heading');
             for (const tabElement of productTabsItems) {
@@ -213,6 +211,9 @@ const theme = {
                     this.parentNode.classList.toggle('show-tab-content');
                 });
             }
+        },
+        init: function (){
+            this.productTabs();
         }
     },
 
