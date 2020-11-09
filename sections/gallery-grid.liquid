@@ -2,18 +2,21 @@
 	<div class="container">
 		<div class="gallery-grid-container">
 			{% for block in section.blocks %}
-				<div class="image"
-					style="
-					grid-column: span {{ block.settings.column-span }};
-					grid-row: span {{ block.settings.row-span }};"
-				>
-					{% if block.settings.image != blank %}
-						<img class="lazyload"
+				{% if block.settings.image != blank %}
+					<div class="image open-popup"
+						 popup-image-src="{{ block.settings.image | img_url: '1200x1200' }}"
+						 style="
+							grid-column: span {{ block.settings.column-span }};
+							grid-row: span {{ block.settings.row-span }};">
+						<img class="lazyload "
 							 src="{{ block.settings.image | img_url: '1x1' }}"
 							 data-src="{{ block.settings.image | img_url: '800x800' }}"
 							 alt="{{ block.settings.image.alt }}">
-					{% endif %}
-				</div>
+						<div class="overlay">
+							{% render 'icon', name: 'zoom' %}
+						</div>
+					</div>
+				{% endif %}
 			{% endfor %}
 		</div>
 	</div>
