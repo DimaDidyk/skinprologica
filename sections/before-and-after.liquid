@@ -4,7 +4,7 @@
 		<div class="before-container" id="before-after-all-items">
 
 			{% for block in section.blocks %}
-				<div class="item">
+				<div class="item open-popup" >
 					{% if block.settings.image != blank %}
 						<img class="item-image lazyload"
 							 src="{{ block.settings.image | img_url: '1x1' }}"
@@ -29,12 +29,7 @@
 					{% endif %}
 				</div>
 			{% endfor %}
-
-			<div id="myDiv"></div>
-
-
 		</div>
-
 
 		{% if template == 'index' %}
 			<div class="btn btn-primary btn-center" id="get-all-before-after">See more</div>
