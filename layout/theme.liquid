@@ -7,10 +7,11 @@
     <meta name="description" content="{{ page_description | escape }}">
     <link rel="canonical" href="{{ canonical_url }}">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <link rel="preload" href="{{ 'swiper-bundle.min.js' | asset_url }}" as="script">
+
     {{ content_for_header }} <!-- Header hook for plugins -->
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" async="async"></script>
 
 </head>
@@ -37,6 +38,17 @@
     {% endunless %}
 
     {% section 'footer' %}
+
+    <div id="main-popup">
+        <div class="popup-container">
+            <div id="close-main-popup" class="close-popup">
+                {% render 'icon', name: 'close' %}
+            </div>
+            <div class="popup-content">
+
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>

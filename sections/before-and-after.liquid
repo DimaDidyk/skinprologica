@@ -4,7 +4,7 @@
 		<div class="before-container" id="before-after-all-items">
 
 			{% for block in section.blocks %}
-				<div class="item open-popup" >
+				<div class="item open-popup" popup-image-src="{{ block.settings.image | img_url: '1200x1200'}}">
 					{% if block.settings.image != blank %}
 						<img class="item-image lazyload"
 							 src="{{ block.settings.image | img_url: '1x1' }}"
@@ -62,6 +62,7 @@
 			function(){
                 console.log('hide');
                 button.style.display = 'none';
+                theme.popup.init();
         	}
         );
     });

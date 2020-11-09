@@ -4,7 +4,7 @@
 
 		<div class="featured-results">
 			{% for block in section.blocks %}
-				<div class="item">
+				<div class="item open-popup" popup-image-src="{{ block.settings.image | img_url: '1200x1200'}}">
 					{% if block.settings.image != blank %}
 						<img class="lazyload"
 							 src="{{ block.settings.image | img_url: '1x1' }}"

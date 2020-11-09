@@ -1,7 +1,7 @@
 html, body{
   margin: 0;
   padding: 0;
-  overflow-xlkl: hidden;
+  overflow-x: hidden;
 }
 
 /**  Fonts   */
@@ -379,6 +379,7 @@ img{
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      cursor: pointer;
       img.item-image{
         width: 100%;
         margin-bottom: 12px;
@@ -535,6 +536,7 @@ img{
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
       border-radius: 20px;
       overflow: hidden;
+      cursor: pointer;
       img{
         width: 100%;
       }
@@ -1431,6 +1433,7 @@ img{
 
 // boxes-tabs Product page content
 .product-template-boxes{
+  margin-bottom: 80px;
   .box{
     .heading{
       position: relative;
@@ -1476,6 +1479,42 @@ img{
   }
   .product-recommendations-slider{
     padding-bottom: 50px;
+  }
+}
+
+// popup
+#main-popup {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(10px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: auto;
+  max-height: 100vh;
+  .close-popup{
+    position: absolute;
+    cursor: pointer;
+    top: 60px;
+    right: 50px;
+  }
+  .popup-container {
+    display: flex;
+    align-items: center;
+    width: 520px;
+    max-width: 100%;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   }
 }
 

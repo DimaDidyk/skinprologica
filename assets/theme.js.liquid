@@ -218,13 +218,27 @@ const theme = {
     },
 
     popup: {
-        open: function(){
-
+        open: function(popupElement){
+            let imageSrc = popupElement.getAttribute('popup-image-src');
+            let popupContent = document.querySelector('#main-popup .popup-content');
+            popupContent.innerHTML = '<img src="'+imageSrc+'">'
+            document.getElementById('main-popup').style.display = 'flex';
         },
         close: function (){
-
+            let closePopupButton = document.getElementById('close-main-popup');
+            closePopupButton.addEventListener('click', function (){
+                document.getElementById('main-popup').style.display = 'none';
+            });
         },
         init: function(){
+            let popupElements = document.getElementsByClassName('open-popup');
+            for (const popupElement of popupElements) {
+                popupElement.addEventListener('click', function (e){
+                    e.preventDefault();
+                    this.open(popupElement);
+                }.bind(this));
+            }
+            this.close();
         }
     },
 
