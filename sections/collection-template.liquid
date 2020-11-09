@@ -3,7 +3,8 @@
 	<div class="container">
 		<div class="collection-list">
 
-			<div class="collection-item {% if collections['all'].handle == current_collection.handle %}active{% endif %}">
+			<div class="collection-item {% if collections['all'].handle == current_collection.handle %}active{% endif %}"
+				 collection-handle="all">
 				<a href="{{ collections['all'].url }}">
 					<div class="icon">
 						{% render 'icon', name: 'icon-all' %}
@@ -13,7 +14,9 @@
 			</div>
 
 			{% for collection in collections %}
-				<div class="collection-item {% if collection.handle == current_collection.handle %}active{% endif %}">
+				<div
+					class="collection-item{% if collection.handle == current_collection.handle %} active{% endif %}"
+					collection-handle="{{ collection.handle }}">
 					<a href="{{ collection.url }}">
 						<div class="icon">
 							{% assign icon_name = 'icon-' | append: collection.handle %}
@@ -25,22 +28,31 @@
 			{% endfor %}
 		</div>
 	</div>
+
 	<div class="container container-large">
-		<div class="product-grid">
-			{% paginate collection.products by 200 %}
-				{% for product in collection.products %}
-					{% render 'product-grid-item', product: product %}
-				{% endfor %}
-			{% endpaginate %}
+		<div id="collection-products">
+			<div class="product-grid">
+				{% paginate collection.products by 200 %}
+					{% for product in collection.products %}
+						{% render 'product-grid-item', product: product %}
+					{% endfor %}
+				{% endpaginate %}
+			</div>
 		</div>
 	</div>
 </div>
 
-
+<script id="tabs-json">
+	const tabSettings = [];
+	{% for block in section.blocks %}
+    	tabSettings.push(`{{ block.settings | json }}`);
+	{% endfor %}
+</script>
 
 {% schema %}
 {
     "name": "Collection",
+	"max_blocks": 100,
     "settings": [
         {
             "type": "text",
@@ -48,6 +60,26 @@
             "label": "Boxes title",
             "default": "Questions? We’ve Got Answers."
         }
-    ]
+    ],
+	"blocks": [
+		{
+			"type": "tab-tag",
+			"name": "Tab",
+			"settings": [
+				{
+					"type": "text",
+					"id": "tab-tag",
+					"label": "Tab tag",
+					"default": "tab-tag-example"
+				},
+				{
+					"type": "richtext",
+					"id": "tab-title",
+					"label": "Tab Title",
+					"default": "<p>Tab title</p>"
+				}
+			]
+		}
+	]
 }
 {% endschema %}

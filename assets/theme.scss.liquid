@@ -130,6 +130,16 @@ a.acive{
   }
 }
 
+.unselectable {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
 // forms
 .form__input-row{
   display: flex;
@@ -1077,6 +1087,8 @@ img{
         font-size: 20px;
         line-height: 1;
         padding-bottom: 12px;
+        padding-left: 6px;
+        padding-right: 6px;
         opacity: .35;
         border-bottom: 3px solid transparent;
         width: max-content;
@@ -1085,12 +1097,52 @@ img{
       &.active{
         .collection-title {
           font-weight: 400;
-          padding-left: 6px;
-          padding-right: 6px;
           opacity: 1;
           border-color: $color_first;
         }
       }
+    }
+  }
+}
+
+/** Collection tab */
+
+.product-tab{
+  margin-bottom: 50px;
+
+  .product-tab-heading{
+    box-shadow: 0 10px 20px rgba(136, 131, 131, 0.1);
+    border-radius: 10px;
+    font-size: 25px;
+    line-height: 26px;
+    margin-bottom: 37px;
+    cursor: pointer;
+    position: relative;
+    .heading{
+      opacity: .8;
+      font-weight: 300;
+      padding: 10px 20px;
+    }
+    &::after{
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-left: 2px solid $color_body_text;
+      border-bottom: 2px solid $color_body_text;
+      transform: rotate(-45deg);
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      border-radius: 2px;
+      transition: all .3s;
+    }
+  }
+  &.hide-content{
+    .product-tab-heading::after{
+      transform: rotate(45deg);
+    }
+    .product-tab-content{
+      display: none;
     }
   }
 }
@@ -1118,6 +1170,7 @@ img{
   .img-wrap{
     display: flex;
     min-width: 124px;
+    max-width: 124px;
     height: 132px;
     border-radius: 10px;
     overflow: hidden;

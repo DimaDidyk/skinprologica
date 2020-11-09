@@ -1,0 +1,209 @@
+const theme = {
+    /**
+     * Currency Helpers
+     * -----------------------------------------------------------------------------
+     * A collection of useful functions that help with currency formatting
+     *
+     * Current contents
+     * - formatMoney - Takes an amount in cents and returns it as a formatted dollar value.
+     *
+     * Alternatives
+     * - Accounting.js - http://openexchangerates.github.io/accounting.js/
+     *
+     */
+    Currency: (function() {
+        var moneyFormat = '${{amount}}'; // eslint-disable-line camelcase
+
+        function formatMoney(cents, format) {
+            if (typeof cents === 'string') {
+                cents = cents.replace('.', '');
+            }
+            var value = '';
+            var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
+            var formatString = format || moneyFormat;
+
+            function formatWithDelimiters(number, precision, thousands, decimal) {
+                thousands = thousands || ',';
+                decimal = decimal || '.';
+
+                if (isNaN(number) || number === null) {
+                    return 0;
+                }
+
+                number = (number / 100.0).toFixed(precision);
+
+                var parts = number.split('.');
+                var dollarsAmount = parts[0].replace(
+                    /(\d)(?=(\d\d\d)+(?!\d))/g,
+                    '$1' + thousands
+                );
+                var centsAmount = parts[1] ? decimal + parts[1] : '';
+
+                return dollarsAmount + centsAmount;
+            }
+
+            switch (formatString.match(placeholderRegex)[1]) {
+                case 'amount':
+                    value = formatWithDelimiters(cents, 2);
+                    break;
+                case 'amount_no_decimals':
+                    value = formatWithDelimiters(cents, 0);
+                    break;
+                case 'amount_with_comma_separator':
+                    value = formatWithDelimiters(cents, 2, '.', ',');
+                    break;
+                case 'amount_no_decimals_with_comma_separator':
+                    value = formatWithDelimiters(cents, 0, '.', ',');
+                    break;
+                case 'amount_no_decimals_with_space_separator':
+                    value = formatWithDelimiters(cents, 0, ' ');
+                    break;
+                case 'amount_with_apostrophe_separator':
+                    value = formatWithDelimiters(cents, 2, "'");
+                    break;
+            }
+
+            return formatString.replace(placeholderRegex, value);
+        }
+        return {
+            formatMoney: formatMoney
+        };
+    })(),
+
+    /**
+     * getCollectionProducts
+     * @param collectionHandle {string}
+     * @returns {Promise<object>}
+     */
+    getCollectionProducts: function (collectionHandle){
+        return new Promise(function(resolve, reject){
+            try {
+                $.getJSON('/collections/' + collectionHandle + '/products.json', resolve);
+            }catch (e){
+                reject(e);
+            }
+        });
+    },
+
+    collection: {
+        dataTabs: tabSettings || [],
+        init: function () {
+            const locationPath = window.location.pathname.split('/');
+            const pageTemplate = locationPath[locationPath.length - 2];
+            const pageHandle = locationPath[locationPath.length - 1];
+            if (pageTemplate === 'collections') {
+                this.render(pageHandle);
+            }
+            this.changeCollection();
+        },
+
+        render: function (collectionHandle){
+            if (this.dataTabs.length > 0) {
+                const _this = this;
+                theme.getCollectionProducts(collectionHandle).then(function (collection) {
+                    const tabsObject = _this.getTabsObject();
+                    const productByTab = _this.getProductsByTab(collection.products, tabsObject);
+                    let collectionTemplate = '';
+                    for (const tabContent of productByTab) {
+                        if( tabContent.products.length > 0 ){
+                            collectionTemplate += theme.getTemplate.collectionTab(tabContent);
+                        }
+                    }
+                    const collectionProducts = document.getElementById('collection-products');
+                    collectionProducts.innerHTML = collectionTemplate;
+                    _this.collectionTabs();
+                });
+            }
+        },
+
+        changeCollection: function (){
+            let collectionNavItems = document.getElementsByClassName('collection-item');
+            for (const collectionNavItem of collectionNavItems) {
+                collectionNavItem.addEventListener('click', function (e){
+                    e.preventDefault();
+                    let collectionHandle = collectionNavItem.getAttribute('collection-handle');
+                    document.getElementsByClassName('collection-item active')[0].classList.remove('active');
+                    collectionNavItem.classList.add('active');
+                    this.render(collectionHandle);
+                }.bind(this));
+            }
+        },
+
+        collectionTabs: function (){
+            let tabsElements = document.getElementsByClassName('product-tab-heading');
+            for (const tabsElement of tabsElements) {
+                tabsElement.addEventListener('click', function (){
+                    this.parentNode.classList.toggle('hide-content');
+                });
+            }
+        },
+
+        getProductsByTab: function (products, tabs) {
+            for (const tab of tabs) {
+                for (const product of products) {
+                    if (product.tags.includes(tab.tag)) {
+                        tab.products.push(product);
+                    }
+                }
+            }
+            return tabs;
+        },
+
+        getTabsObject: function () {
+            let tabsObject = [];
+            for (let index in this.dataTabs) {
+                let tabParse = JSON.parse(this.dataTabs[index]);
+                tabsObject[index] = {
+                    tag: tabParse['tab-tag'],
+                    title: tabParse['tab-title'],
+                    products: []
+                };
+            }
+            return tabsObject;
+        },
+    },
+    
+    getTemplate: {
+        productGridItem: function (product){
+            return `
+            <div class="product-grid-item">
+                <a href="/products/${ product.handle }">
+                    <span class="img-wrap">
+                        <img class="product-img"
+                             src="${ product.images[0].src }}"
+                             alt="${ product.title }" />
+                        </span>
+                        <span class="product-info">
+                        <div class="product-title">${ product.title }</div>
+                        <div class="some-text"><b>Small Area 6 sessions</b></div>
+                        <div class="product-price"><strong>$${ product.variants[0].price }</strong></div>
+                        <span class="desc">
+                        Broken facial capillaries, also known as telangiectasia...
+                        </span>
+                    </span>
+                </a>
+            </div>`
+        },
+        collectionTab: function (tabContent){
+            let tabTemplate = `
+                <div class="product-tab unselectable">
+                    <div class="product-tab-heading align-center">
+                        <h3 class="heading">${tabContent.title}</h3>
+                    </div>
+                    <div class="product-tab-content">
+                        <div class="product-grid">`;
+
+            for (const product of tabContent.products) {
+                tabTemplate += this.productGridItem(product);
+            }
+            tabTemplate += `</div></div></div>`;
+            return tabTemplate;
+        }
+    },
+
+    init: function (){
+        this.collection.init();
+    },
+}
+window.theme = theme || {};
+theme.init();
