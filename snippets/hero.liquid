@@ -13,7 +13,7 @@
 		{% if template == 'index' %}
 			{% assign vector = 'hero-vector-2.png' %}
 		{% endif %}
-		<img class="hero-sub-bg hero-vector-1"
+		<img class="hero-sub-bg hero-vector-1 hide-tab"
 			 src="{{ vector | asset_img_url: '800x800' }}"
 			 alt="{{ section.settings.heading }}">
 	{% endif %}
@@ -23,7 +23,7 @@
 
 			{% if template == 'index' %}
 				<img src="{{ 'hero-logo.png' | asset_img_url: 'x500' }}"
-					 style="min-width: 720px; margin-left: -66px"
+					 class="hero-index-label"
 					 alt="{{ section.settings.heading }}">
 			{% endif %}
 

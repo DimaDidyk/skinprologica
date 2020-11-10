@@ -142,6 +142,9 @@ a.acive{
   .only-tab {
     display: block;
   }
+  .hide-tab{
+    display: none;
+  }
 }
 .only-mobile{
   display: none;
@@ -150,7 +153,7 @@ a.acive{
   .only-mobile{
     display: block;
   }
-  .desktop-only{
+  .hide-mobile{
     display: none;
   }
 }
@@ -330,8 +333,6 @@ img{
   }
 }
 
-
-
 // mobile header
 @media only screen and (max-width: $small) {
   body{
@@ -458,6 +459,10 @@ img{
   position: relative;
   height: 644px;
   overflow: hidden;
+  .hero-index-label{
+    min-width: 720px;
+    margin-left: -66px;
+  }
   .bg-image{
     position: absolute;
     z-index: -1;
@@ -476,6 +481,7 @@ img{
     top: 0;
     right: 10px;
     z-index: -2;
+    pointer-events: none;
   }
   &.hero-index .hero-sub-bg{
     z-index: 1;
@@ -484,6 +490,9 @@ img{
     top: -45px;
     right: 33px;
   }
+
+
+
   .gradient{
     position: absolute;
     top: 0;
@@ -503,6 +512,8 @@ img{
     color: $color_body_text_light;
     width: 510px;
     font-weight: lighter;
+
+
     h2{
       color: $color_body_text_light;
       font-weight: lighter;
@@ -515,6 +526,46 @@ img{
     }
     .btn{
       margin-top: 50px;
+    }
+  }
+
+  @media only screen and (max-width: $medium) {
+    height: initial;
+    padding-top: 50px;
+    padding-bottom: 400px;
+
+    .bg-image{
+      bottom: 0;
+      top: initial;
+      right: 0;
+      height: 500px;
+      left: initial;
+      object-position: bottom right;
+      object-fit: none;
+    }
+    .hero-index-label{
+      left: -120px;
+      position: relative;
+      max-width: initial;
+      width: 100%;
+      display: block;
+      min-width: 634px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      margin: 0 auto;
+      width: 330px;
+      max-width: 100%;
+      h2{
+        font-weight: 300;
+        font-size: 40px;
+        line-height: 55px;
+      }
+      p{
+        font-size: 16px;
+        line-height: 22px;
+      }
     }
   }
 
@@ -1055,6 +1106,7 @@ img{
     }
     .list{
       display: flex;
+      flex-wrap: wrap;
       margin-top: 50px;
       font-weight: 300;
       font-size: 14px;
@@ -1104,6 +1156,47 @@ img{
       padding-left: 15px;
       padding-right: 15px;
     }
+  }
+  @media only screen and (max-width: $small) {
+    flex-wrap: wrap;
+    position: relative;
+    padding-top: 80px;
+    .footer-menu{
+      a{
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+    }
+    .left-menu{
+      width: 50%;
+    }
+    .right-menu{
+      width: 50%;
+    }
+    .footer-center-content{
+      width: 100%;
+      order: 1;
+      top: 30px;
+      .list{
+        justify-content: center;
+        .separator{
+          width: 242px;
+          height: 1px;
+          margin: 4px 1000px;
+          background: rgba(0, 0, 0, 0.4);
+        }
+      }
+      .copyright{
+        width: 230px;
+        text-align: center;
+      }
+      .footer-logo{
+        position: absolute;
+        top: 30px;
+      }
+    }
+
   }
 }
 
