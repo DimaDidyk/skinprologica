@@ -1033,12 +1033,21 @@ img{
 
   .buttons{
     display: flex;
+    flex-wrap: wrap;
     padding-top: 30px;
     padding-bottom: 30px;
     justify-content: center;
     .btn{
       margin-left: 10px;
       margin-right: 10px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @media only screen and (max-width: $small) {
+    padding-bottom: 0;
+    .btn{
+      width: 100%;
     }
   }
 }
