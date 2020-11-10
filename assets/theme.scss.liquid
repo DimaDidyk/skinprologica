@@ -180,11 +180,15 @@ a.acive{
 // forms
 .form__input-row{
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
   .form__input-wrapper{
     width: calc(50% - 30px);
     margin-bottom: 30px;
+    @media only screen and (max-width: $small) {
+      width: 100%;
+    }
   }
   .form__input-wrapper-100{
     width: 100%;
@@ -1382,17 +1386,27 @@ img{
     box-shadow: 0 25px 100px rgba(0, 0, 0, 0.07);
     border-radius: 10px;
     overflow: hidden;
+    @media only screen and (max-width: $small) {
+      margin-top: 80px;
+    }
     .contact-form{
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 450px;
+      width: 490px;
       max-width: 100%;
       margin: 0 auto;
+      padding-left: 25px;
+      padding-right: 25px;
+      box-sizing: border-box;
       .form-title{
-        font-size: 40px;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
+        @media only screen and (max-width: $small) {
+          font-size: 30px;
+          line-height: 55px;
+          margin: 10px 0;
+        }
       }
       form{
         width: 100%;
@@ -1424,6 +1438,20 @@ img{
       iframe{
         width: 490px;
         height: 100%;
+      }
+    }
+    @media only screen and (max-width: $medium) {
+      flex-direction: column;
+      .contact-form{
+        padding-top: 20px;
+        padding-bottom: 10px;
+      }
+      .map{
+        height: 300px;
+        margin-left: -3px;
+        iframe{
+          width: 100%;
+        }
       }
     }
   }
@@ -1802,6 +1830,7 @@ img{
 .template-blog{
   padding-top: 80px;
   padding-bottom: 150px;
+
   .title{
     margin-bottom: 50px;
   }
@@ -1821,7 +1850,7 @@ img{
     display: flex;
     flex-direction: column-reverse;
     .list-article-item{
-      height: 200px;
+      min-height: 200px;
       padding: 20px 80px;
       border: 1px solid $border-custom-color;
       box-sizing: border-box;
@@ -1837,12 +1866,32 @@ img{
       }
     }
   }
+
+  @media only screen and (max-width: $small) {
+    padding-bottom: 80px;
+    .title{
+      margin-bottom: 30px;
+    }
+    .description{
+      font-size: 16px;
+      line-height: 22px;
+    }
+    .articles-list{
+      padding-top: 20px;
+      .list-article-item {
+        padding: 15px;
+        flex-direction: column;
+        margin-bottom: 40px;
+      }
+    }
+  }
 }
 
 .article-icon{
   width: 100px;
   min-width: 100px;
   height: 100px;
+  min-height: 100px;
   border-radius: 50%;
   overflow: hidden;
   background: $color_first;
@@ -1853,6 +1902,12 @@ img{
   path,
   svg{
     fill: $color_background;
+  }
+
+  @media only screen and (max-width: $small) {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-right: 0;
   }
 }
 
