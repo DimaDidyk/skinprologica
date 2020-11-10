@@ -242,7 +242,23 @@ const theme = {
         }
     },
 
+    toggleElement: function (){
+
+    },
+
+    mobileMenu: {
+        init: function (){
+            let toggleMobileMenuButton = document.getElementById('sandwich');
+            let toggleContent = document.getElementById('mobile-toggle-content');
+            toggleMobileMenuButton.addEventListener('click', function (){
+                toggleMobileMenuButton.classList.toggle('active');
+                toggleContent.classList.toggle('active');
+            })
+        }
+    },
+
     init: function (){
+        this.mobileMenu.init();
         this.popup.init();
         this.product.init();
         this.collection.init();

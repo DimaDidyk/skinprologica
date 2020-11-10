@@ -1,4 +1,4 @@
-<div class="header-content">
+<div class="header-content desktop-only">
 	<div class="header-top">
 		<div class="container">
 			<div class="header-top-content">
@@ -53,6 +53,58 @@
 	</div>
 </div>
 
+<div class="header-content header-mobile-content only-mobile">
+	<div class="header-visible-container">
+		<div class="container container-flex">
+			<div class="logo">
+				<a href="/">
+					<img class="lazyload"
+						 src="{{ section.settings.logo | img_url: '100x50' }}"
+						 data-src="{{ section.settings.logo | img_url: '360x90' }}"
+						 alt="{{ section.settings.logo.alt }}">
+				</a>
+			</div>
+			<div class="menu-toggle">
+				<div id="sandwich">
+					<div class="sw-topper"></div>
+					<div class="sw-bottom"></div>
+					<div class="sw-footer"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="mobile-toggle-content" class="mobile-toggle-content">
+		<div class="mobile-menu header-menu">
+			{% for link in linklists[section.settings.menu].links %}
+				{% assign child_list_handle = link.title | handleize %}
+				{% if linklists[child_list_handle].links != blank %}
+					<a href="{{ link.url }}"
+					   class="{% if link.current %}active{% endif %}">{{ link.title }}</a>
+					[{% for childlink in linklists[child_list_handle].links %}
+					<a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+				{% endfor %}]
+				{% else %}
+					<a href="{{ link.url }}"
+					   class="{% if link.current %}active{% endif %}">{{ link.title }}</a>
+				{% endif %}
+			{% endfor %}
+		</div>
+		<div class="text-submenu">
+			{% if settings.tel != blank %}
+				<div class="text">
+					<b class="color_first">Call:</b> {{ settings.tel }}<br>
+					{{ settings.schedule }}
+				</div>
+			{% endif %}
+			{% if settings.address != blank %}
+				<div class="text last-b">
+					{{ settings.address }}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
 
 {% schema %}
 {

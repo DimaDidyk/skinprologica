@@ -53,6 +53,11 @@ $border-custom-color: #9A8F8F;
   box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.05);
 }
 
+// sizes
+$large: 1200px;
+$medium: 992px;
+$small: 765px;
+
 /**  Typography
 */
 body{
@@ -130,6 +135,27 @@ a.acive{
   }
 }
 
+.only-tab{
+  display: none;
+}
+@media only screen and (max-width: $medium) {
+  .only-tab {
+    display: block;
+  }
+}
+.only-mobile{
+  display: none;
+}
+@media only screen and (max-width: $small) {
+  .only-mobile{
+    display: block;
+  }
+  .desktop-only{
+    display: none;
+  }
+}
+
+
 .unselectable {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -191,6 +217,11 @@ input{
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
+}
+.container-flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .container-fluid{
   width: 100%;
@@ -291,14 +322,142 @@ img{
       &:hover::after{
         width: 100%;
       }
+      @media only screen and (max-width: $medium) {
+        margin-left: 8px;
+        margin-right: 8px;
+      }
     }
   }
 }
+
+
+
+// mobile header
+@media only screen and (max-width: $small) {
+  body{
+    padding-top: 75px;
+  }
+  .header-mobile-content{
+    position: fixed;
+    z-index: 8;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
+    background: $color_background;
+    .header-visible-container{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 75px;
+      box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.05);
+      .logo{
+        width: 140px;
+      }
+      .menu-toggle{
+        display: flex;
+        margin-right: -34px;
+        transform: scale(0.3);
+        #sandwich {
+          width: 100px;
+          height: 72px;
+        }
+        .sw-topper {
+          position: relative;
+          top: 0;
+          width: 100px;
+          height: 10px;
+          background: $color_first;
+          border: none;
+          border-radius: 4px 4px 4px 4px;
+          transition: transform 0.5s, top 0.2s;
+        }
+        .sw-bottom {
+          position: relative;
+          width: 100px;
+          height: 10px;
+          top: 20px;
+          background: $color_first;
+          border: none;
+          border-radius: 4px 4px 4px 4px;
+          transition: transform 0.5s, top 0.2s;
+          transition-delay: 0.2s, 0s;
+        }
+        .sw-footer {
+          position: relative;
+          width: 100px;
+          height: 10px;
+          top: 40px;
+          background: $color_first;
+          border: none;
+          border-radius: 4px 4px 4px 4px;
+          transition: all 0.5s;
+          transition-delay: 0.1s;
+        }
+        #sandwich.active .sw-topper {
+          top: 15px;
+          transform: rotate(140deg);
+        }
+        #sandwich.active .sw-bottom {
+          top: 5px;
+          transform: rotate(-140deg);
+        }
+        #sandwich.active .sw-footer {
+          opacity: 0;
+          top: 0;
+          transform: rotate(180deg);
+        }
+      }
+    }
+    .mobile-toggle-content{
+      transition: all .4s;
+      max-height: 0;
+      overflow: hidden;
+      max-height: 0;
+      &.active{
+        max-height: 1000px;
+      }
+      .mobile-menu{
+        padding: 20px 15px;
+        box-sizing: border-box;
+        a{
+          display: block;
+          text-align: center;
+          font-size: 16px;
+          line-height: 22px;
+          text-transform: uppercase;
+          margin-top: 20px;
+          &.active{
+            font-weight: bold;
+            color: $color_first;
+          }
+        }
+      }
+      .text-submenu{
+        background: rgba(244, 244, 244, 0.76);
+        padding: 25px 0;
+        .text{
+          text-align: center;
+          padding: 15px;
+          .color_first{
+            color: $color_body_text;
+          }
+        }
+        .last-b p:last-child{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
 
 /**  Section: Hero   */
 .hero{
   position: relative;
   height: 644px;
+  overflow: hidden;
   .bg-image{
     position: absolute;
     z-index: -1;
