@@ -731,6 +731,30 @@ img{
       margin-left: 0;
     }
   }
+
+  @media only screen and (min-width: $small) and (max-width: $medium) {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  @media only screen and (max-width: $small) {
+    display: flex;
+    flex-direction: column-reverse;
+    .text-left-side{
+        position: static;
+      .text-content{
+        padding: 40px 0;
+        width: 100%;
+      }
+    }
+    .image-content {
+      width: initial;
+      height: initial;
+      padding: 0;
+      img{
+        position: static;
+      }
+    }
+  }
 }
 
 /**  Section: Featured Results   */
