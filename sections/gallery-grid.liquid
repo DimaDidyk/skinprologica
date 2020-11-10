@@ -19,8 +19,24 @@
 				{% endif %}
 			{% endfor %}
 		</div>
+
+		{% if section.blocks.size > 3 %}
+			<div id="view-more-grid"
+				 class="view-more-grid only-mobile align-center">View More</div>
+		{% endif %}
 	</div>
 </div>
+
+<script>
+	let viewMoreButton = document.getElementById('view-more-grid');
+	let gridImages = document.querySelectorAll('.gallery-grid-container .image');
+	viewMoreButton.addEventListener('click', function (){
+        viewMoreButton.style.display = 'none';
+        for (const gridImage of gridImages) {
+            gridImage.style.display = 'block';
+        }
+	})
+</script>
 
 {% schema %}
 {
