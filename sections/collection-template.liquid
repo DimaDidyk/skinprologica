@@ -3,29 +3,38 @@
 	<div class="container">
 		<div class="collection-list">
 
-			<div class="collection-item {% if collections['all'].handle == current_collection.handle %}active{% endif %}"
-				 collection-handle="all">
-				<a href="{{ collections['all'].url }}">
-					<div class="icon">
-						{% render 'icon', name: 'icon-all' %}
+			<!-- Swiper Slider -->
+			<div id="collection-navigation-slider" class="swiper-container collection-navigation-slider">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="collection-item {% if collections['all'].handle == current_collection.handle %}active{% endif %}"
+							 collection-handle="all">
+							<a href="{{ collections['all'].url }}">
+								<div class="icon">
+									{% render 'icon', name: 'icon-all' %}
+								</div>
+								<div class="collection-title">{{ collections['all'].handle | capitalize }}</div>
+							</a>
+						</div>
 					</div>
-					<div class="collection-title">{{ collections['all'].handle | capitalize }}</div>
-				</a>
+
+					{% for collection in collections %}
+						<div class="swiper-slide">
+							<div class="collection-item{% if collection.handle == current_collection.handle %} active{% endif %}"
+								 collection-handle="{{ collection.handle }}">
+								<a href="{{ collection.url }}">
+									<div class="icon">
+										{% assign icon_name = 'icon-' | append: collection.handle %}
+										{% render 'icon', name: icon_name %}
+									</div>
+									<div class="collection-title">{{ collection.title }}</div>
+								</a>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
 			</div>
 
-			{% for collection in collections %}
-				<div
-					class="collection-item{% if collection.handle == current_collection.handle %} active{% endif %}"
-					collection-handle="{{ collection.handle }}">
-					<a href="{{ collection.url }}">
-						<div class="icon">
-							{% assign icon_name = 'icon-' | append: collection.handle %}
-							{% render 'icon', name: icon_name %}
-						</div>
-						<div class="collection-title">{{ collection.title }}</div>
-					</a>
-				</div>
-			{% endfor %}
 		</div>
 	</div>
 
@@ -48,6 +57,14 @@
     	tabSettings.push(`{{ block.settings | json }}`);
 	{% endfor %}
 </script>
+
+{% javascript %}
+var testimonialsSlider = new Swiper('#collection-navigation-slider', {
+	slidesPerView: 'auto',
+	centerInsufficientSlides: 'true',
+});
+{% endjavascript %}
+
 
 {% schema %}
 {

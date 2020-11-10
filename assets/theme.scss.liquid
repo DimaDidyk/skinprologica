@@ -1474,17 +1474,26 @@ img{
 .section-collection-template{
   padding-top: 80px;
   padding-bottom: 80px;
+  @media only screen and (max-width: $small) {
+    padding-top: 40px;
+    padding-bottom: 0;
+  }
   .collection-list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
     margin-bottom: 80px;
+
+    @media only screen and (max-width: $small) {
+      margin-bottom: 30px;
+    }
+
+    .swiper-slide{
+      min-width: 100px;
+      width: max-content;
+    }
     .collection-item{
       display: flex;
       flex-direction: column;
       padding-left: 10px;
       padding-right: 10px;
-      padding-bottom: 20px;
       .icon{
         width: 70px;
         height: 70px;
@@ -1541,10 +1550,13 @@ img{
     margin-bottom: 37px;
     cursor: pointer;
     position: relative;
+
     .heading{
       opacity: .8;
       font-weight: 300;
       padding: 10px 20px;
+      position: relative;
+
     }
     &::after{
       content: '';
@@ -1558,6 +1570,18 @@ img{
       top: 20px;
       border-radius: 2px;
       transition: all .3s;
+    }
+    @media only screen and (max-width: $small) {
+      .heading {
+        font-size: 20px;
+        line-height: 21px;
+        text-align: left;
+        padding: 20px 40px 20px 20px;
+      }
+      &::after {
+        right: 20px;
+        top: 24px;
+      }
     }
   }
   &.hide-content{
@@ -1575,6 +1599,10 @@ img{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(366px, 1fr));
   grid-gap: 30px 40px;
+  @media only screen and (max-width: $small) {
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
 }
 
 //  Product Grid Item
@@ -1662,6 +1690,7 @@ img{
       line-height: 27px;
       opacity: .5;
     }
+
   }
   .policy-items{
     padding-top: 30px;
