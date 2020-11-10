@@ -1,0 +1,76 @@
+<div class="section-featured-services">
+    <div class="container">
+        {% if section.settings.title != blank %}
+            <h3 class="title align-center no-margin">{{ section.settings.title }}</h3>
+        {% endif %}
+        <div class="featured-services-content">
+            {% for block in section.blocks %}
+
+                {% if block.settings.url != blank %}
+                    <a href="{{ block.settings.url }}">
+                {% endif %}
+
+                <div class="service-item{% if block.settings.title != blank %} shadow{% endif %}">
+                    {% if block.settings.image != blank %}
+                        <img class="lazyload bg-image"
+                             src="{{ block.settings.image | img_url: '1x1' }}"
+                             data-src="{{ block.settings.image | img_url: '800x400' }}"
+                             alt="{{ block.settings.image.alt }}">
+                    {% endif %}
+
+                    {% if block.settings.title != blank %}
+                        <div class="service-title">{{ block.settings.title }}</div>
+                    {% endif %}
+                </div>
+
+                {% if block.settings.url != blank %}
+                    </a>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Featured Services",
+    "max_blocks": 100,
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Featured Services"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "service",
+            "name": "Service",
+            "settings": [
+                {
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "Url"
+                }
+			]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Featured Services"
+        }
+    ]
+}
+{% endschema %}

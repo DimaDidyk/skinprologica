@@ -160,8 +160,6 @@ const theme = {
                 return tmp.textContent || tmp.innerText || "";
             },
             productGridItem: function (product){
-                console.log(product);
-
                 let text = '';
                 for (const tag of product.tags) {
                     if(tag.includes('text__')){
