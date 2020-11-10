@@ -1,4 +1,7 @@
 {% assign current_collection = collection %}
+{% if current_collection == blank %}
+	{% assign current_collection = collections['all'] %}
+{% endif %}
 <div class="section-collection-template">
 	<div class="container">
 		<div class="collection-list">
@@ -41,8 +44,9 @@
 	<div class="container container-large">
 		<div id="collection-products">
 			<div class="product-grid">
-				{% paginate collection.products by 200 %}
-					{% for product in collection.products %}
+
+				{% paginate current_collection.products by 200 %}
+					{% for product in current_collection.products %}
 						{% render 'product-grid-item', product: product %}
 					{% endfor %}
 				{% endpaginate %}

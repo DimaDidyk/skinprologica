@@ -91,6 +91,11 @@ const theme = {
         render: function (collectionHandle){
             if (this.dataTabs.length > 0) {
                 const _this = this;
+                if( collectionHandle === '' ){
+                    collectionHandle = 'all';
+                }
+                console.log(collectionHandle);
+
                 theme.getCollectionProducts(collectionHandle).then(function (collection) {
                     const tabsObject = _this.getTabsObject();
                     const productByTab = _this.getProductsByTab(collection.products, tabsObject);
@@ -113,7 +118,10 @@ const theme = {
                 collectionNavItem.addEventListener('click', function (e){
                     e.preventDefault();
                     let collectionHandle = collectionNavItem.getAttribute('collection-handle');
-                    document.getElementsByClassName('collection-item active')[0].classList.remove('active');
+                    let activeNavItem = document.getElementsByClassName('collection-item active')[0];
+                    if( activeNavItem ){
+                        activeNavItem.classList.remove('active');
+                    }
                     collectionNavItem.classList.add('active');
                     this.render(collectionHandle);
                 }.bind(this));
@@ -201,10 +209,13 @@ const theme = {
         },
 
         init: function () {
-            const locationPath = window.location.pathname.split('/');
-            const pageTemplate = locationPath[locationPath.length - 2];
-            const pageHandle = locationPath[locationPath.length - 1];
-            if (pageTemplate === 'collections') {
+            let locationPath = window.location.pathname.split('/');
+            let pageTemplate = locationPath[locationPath.length - 2];
+            let pageHandle = locationPath[locationPath.length - 1];
+            if( pageHandle === 'collections' ){
+                pageHandle = 'all';
+            }
+            if ( pageTemplate.includes('collection') || pageHandle.includes('all') ) {
                 this.dataTabs = tabSettings;
                 this.render(pageHandle);
             }
