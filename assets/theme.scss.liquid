@@ -656,6 +656,9 @@ img{
 .our-services-section{
   padding-top: 50px;
   padding-bottom: 150px;
+  @media only screen and (max-width: $small) {
+    padding-bottom: 50px;
+  }
   .sub-text{
     width: 390px;
     max-width: 100%;
@@ -666,6 +669,13 @@ img{
     display: grid;
     grid-template-columns: 1fr 500px 1fr;
     margin-top: 60px;
+    @media only screen and (max-width: $medium) {
+      grid-template-columns: 1fr 350px 1fr;
+      margin-top: 30px;
+    }
+    @media only screen and (max-width: $small) {
+      grid-template-columns: 1fr;
+    }
     .service-item{
       display: flex;
       flex-direction: column;
@@ -675,6 +685,10 @@ img{
         margin-top: 10px;
         font-size: 25px;
         line-height: 34px;
+        @media only screen and (max-width: $medium) {
+          font-size: 16px;
+          line-height: 1.5;
+        }
       }
     }
     .service-item:nth-child(2n - 1){
@@ -693,6 +707,24 @@ img{
       grid-column: 2;
       grid-row: 1/ span 3;
       margin: 0 auto;
+
+    }
+    @media only screen and (max-width: $small) {
+      .service-item:nth-child(n){
+        display: block;
+        text-align: center;
+        padding: 0;
+        margin-bottom: 20px;
+        .title{
+          text-align: center;
+        }
+      }
+      .main-image {
+        grid-row: 4;
+        grid-column: 1;
+        margin-top: 20px;
+        margin-bottom: 40px;
+      }
     }
   }
 }
