@@ -56,7 +56,7 @@ $border-custom-color: #9A8F8F;
 // sizes
 $large: 1200px;
 $medium: 992px;
-$small: 765px;
+$small: 768px;
 
 /**  Typography
 */
@@ -136,6 +136,10 @@ a.acive{
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+  @media only screen and (max-width: $small) {
+    width: 100%;
+    display: block;
   }
 }
 
@@ -645,8 +649,6 @@ img{
     }
     .btn{
       margin-top: 50px;
-      width: 320px;
-      max-width: 100%;
     }
   }
 
@@ -964,6 +966,7 @@ img{
           font-size: 14px;
           line-height: 19px;
           color: $color_body_text_2;
+
         }
       }
 
@@ -1135,9 +1138,6 @@ img{
 
   @media only screen and (max-width: $small) {
     padding-bottom: 0;
-    .btn{
-      width: 100%;
-    }
   }
 }
 
@@ -1435,7 +1435,9 @@ img{
   padding-bottom: 80px;
   .product-template-content{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+
   }
   .product-image{
     width: calc(50% - 25px);
@@ -1462,11 +1464,18 @@ img{
       margin-top: 50px;
     }
   }
-}
-.product-template-boxes{
-  margin-top: 100px;
-  .title{
-    margin-bottom: 60px;
+  @media only screen and (max-width: $small) {
+    .product-image, .product-info{
+      width: 100%;
+    }
+    .product-info{
+      padding-top: 30px;
+      .product-title{
+        font-size: 35px;
+        line-height: 36px;
+      }
+
+    }
   }
 }
 
@@ -1654,7 +1663,13 @@ img{
     .desc{
       font-weight: 300;
       font-size: 14px;
-      line-height: 19px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3; /* number of lines to show */
+      line-height: 20px;
+      max-height: 60px;
     }
   }
 }
@@ -1891,6 +1906,9 @@ img{
     font-size: 14px;
     line-height: 19px;
     padding: 0 40px 20px;
+    @media only screen and (max-width: $small) {
+      padding: 0 15px 15px;
+    }
     p{
       margin-bottom: 20px;
     }
@@ -1904,6 +1922,14 @@ img{
 // boxes-tabs Product page content
 .product-template-boxes{
   margin-bottom: 80px;
+  margin-top: 100px;
+  @media only screen and (max-width: $small) {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .title{
+    margin-bottom: 60px;
+  }
   .box{
     .heading{
       position: relative;
@@ -1949,6 +1975,14 @@ img{
   }
   .product-recommendations-slider{
     padding-bottom: 50px;
+    .some-text{
+      display: none;
+    }
+    .img-wrap{
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+    }
   }
 }
 
@@ -2004,4 +2038,10 @@ img{
 .swiper-button-next, .swiper-button-prev{
   color: $color_first;
   outline: none;
+}
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+  left: 0;
+}
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+  right: 0;
 }

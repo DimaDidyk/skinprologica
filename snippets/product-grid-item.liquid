@@ -8,11 +8,8 @@
 		</span>
 		<span class="product-info">
 			<div class="product-title">{{ product.title }}</div>
-			<div class="some-text"><b>Small Area 6 sessions</b></div>
 			<div class="product-price"><strong>{{ product.price | money }}</strong></div>
-			<span class="desc">
-				Broken facial capillaries, also known as telangiectasia...
-			</span>
+			<span class="desc">{{ product.description | strip_html }}</span>
 		</span>
 	</a>
 </div>

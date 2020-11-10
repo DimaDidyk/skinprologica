@@ -154,7 +154,20 @@ const theme = {
         },
 
         getTemplate: {
+            stripHtml: function(html){
+                let tmp = document.createElement("DIV");
+                tmp.innerHTML = html;
+                return tmp.textContent || tmp.innerText || "";
+            },
             productGridItem: function (product){
+                console.log(product);
+
+                let text = '';
+                for (const tag of product.tags) {
+                    if(tag.includes('text__')){
+                        text = tag.replace('text__', '');
+                    }
+                }
                 return `
             <div class="product-grid-item">
                 <a href="/products/${ product.handle }">
@@ -165,11 +178,9 @@ const theme = {
                         </span>
                         <span class="product-info">
                         <div class="product-title">${ product.title }</div>
-                        <div class="some-text"><b>Small Area 6 sessions</b></div>
+                        <div class="some-text"><b>${ text }</b></div>
                         <div class="product-price"><strong>$${ product.variants[0].price }</strong></div>
-                        <span class="desc">
-                        Broken facial capillaries, also known as telangiectasia...
-                        </span>
+                        <span class="desc">${ this.stripHtml(product.body_html) }</span>
                     </span>
                 </a>
             </div>`
