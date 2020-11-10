@@ -1022,10 +1022,9 @@ img{
   .gift-content{
     background: linear-gradient(96.71deg, #CD969D 5.08%, #913B39 105.7%), linear-gradient(96.71deg, #CD969D 5.08%, #913B39 105.7%);
     border-radius: 30px;
-    padding-top: 40px;
-    padding-bottom: 90px;
     color: $color_body_text_light;
     position: relative;
+    padding: 40px 15px 90px;
     .bg-image{
       position: absolute;
       top: 0;
@@ -1047,6 +1046,32 @@ img{
       font-size: 40px;
       font-weight: 400;
       color: $color_body_text_light;
+    }
+  }
+  @media only screen and (max-width: $small) {
+    padding-bottom: 80px;
+    .gift-content{
+      .bg-image{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: right;
+        opacity: 0.3;
+      }
+      h3{
+        font-size: 35px;
+        line-height: 36px;
+        svg{
+          display: block;
+          text-align: center;
+          margin: 0 auto 30px;
+          width: 100px;
+          height: 70px;
+        }
+      }
     }
   }
 }
