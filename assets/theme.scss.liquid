@@ -77,6 +77,10 @@ h1, .h1{
 h2, .h2{
   font-size: 45px;
   line-height: 55px;
+  @media only screen and (max-width: $small) {
+    font-size: 35px;
+    line-height: 40px;
+  }
 }
 h3, .h3{
   font-size: 35px;
@@ -1050,6 +1054,7 @@ img{
   }
   @media only screen and (max-width: $small) {
     padding-bottom: 80px;
+    padding-top: 60px;
     .gift-content{
       .bg-image{
         position: absolute;
@@ -1111,6 +1116,23 @@ img{
       }
     }
   }
+
+
+  @media only screen and (max-width: $small) {
+    .contact-grid{
+      flex-wrap: wrap;
+      .contact-item{
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 30px 15px;
+        svg{
+          width: 44px;
+          height: 44px;
+        }
+      }
+    }
+  }
+
 }
 
 /**  Footer   */
