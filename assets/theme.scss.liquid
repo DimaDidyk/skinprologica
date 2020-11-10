@@ -1918,7 +1918,7 @@ img{
     position: relative;
     margin-top: 80px;
     margin-bottom: 50px;
-    height: 200px;
+    min-height: 200px;
     background: rgba(0, 0, 0, 0.43);
     border-radius: 10px;
     overflow: hidden;
@@ -1942,7 +1942,18 @@ img{
       z-index: -1;
     }
   }
-  .article-content{
+  @media only screen and (max-width: $small) {
+    padding-bottom: 80px;
+    .article-banner{
+      flex-direction: column;
+      padding: 15px;
+    }
+    .box .heading{
+      padding: 20px 15px;
+    }
+    .box .text-column{
+      column-count: 1;
+    }
   }
 }
 
