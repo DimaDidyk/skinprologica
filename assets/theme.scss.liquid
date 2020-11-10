@@ -420,6 +420,7 @@ img{
       max-height: 0;
       overflow: hidden;
       max-height: 0;
+      box-shadow: 0 5px 50px rgba(0, 0, 0, 0.05);
       &.active{
         max-height: 1000px;
       }
@@ -797,8 +798,7 @@ img{
     flex-wrap: wrap;
 
     .item{
-      width: 380px;
-      min-width: 380px;
+      width: calc(33.333% - 20px);
       background: #FFFFFF;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
       border-radius: 20px;
@@ -818,8 +818,28 @@ img{
         margin-bottom: 40px;
       }
     }
+
+  }
+  @media only screen and (max-width: $medium) {
+    margin-top: 30px;
+    .featured-results .item{
+      .title {
+        font-size: 22px;
+        line-height: 1.4;
+        min-height: 60px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
   }
 
+  @media only screen and (max-width: $small) {
+    .featured-results .item{
+      width: 330px;
+      max-width: 100%;
+      margin: 10px auto;
+    }
+  }
 }
 
 /** Section: Video   */
