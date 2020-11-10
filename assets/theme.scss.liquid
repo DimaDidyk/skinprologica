@@ -1142,6 +1142,9 @@ img{
 
   @media only screen and (max-width: $small) {
     padding-bottom: 0;
+    .rich-text-content .sub-text{
+      margin: 12px auto 10px;
+    }
   }
 }
 
@@ -1711,10 +1714,22 @@ img{
     justify-content: space-between;
     .image{
       width: 350px;
+      max-width: 100%;
       img{
         width: 280px;
         margin: 0 auto;
         display: block;
+      }
+    }
+  }
+  @media only screen and (max-width: $small) {
+    margin-bottom: 20px;
+
+    .images-row{
+      flex-wrap: wrap;
+      .image{
+        width: 50%;
+        margin-bottom: 20px;
       }
     }
   }
