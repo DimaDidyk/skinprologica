@@ -1733,12 +1733,14 @@ img{
       line-height: 27px;
       opacity: .5;
     }
-
   }
   .policy-items{
     padding-top: 30px;
     padding-bottom: 30px;
     padding-left: 80px;
+    @media only screen and (max-width: $medium) {
+      padding-left: 0;
+    }
     .policy-item{
       display: flex;
       margin-bottom: 34px;
@@ -1779,6 +1781,25 @@ img{
           display: block;
           font-style: inherit;
         }
+      }
+    }
+  }
+  @media only screen and (max-width: $small) {
+    .heading {
+      .description{
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+    .policy-items .policy-item{
+      flex-direction: column;
+      align-items: center;
+      .icon{
+        margin-bottom: 30px;
+        margin-top: 20px;
+      }
+      .text-content{
+        padding-left: 0;
       }
     }
   }
