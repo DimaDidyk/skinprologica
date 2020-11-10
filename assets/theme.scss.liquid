@@ -807,13 +807,15 @@ img{
   @media only screen and (max-width: $small) {
     display: flex;
     flex-direction: column-reverse;
+    &.inverse .text-left-side,
     .text-left-side{
-        position: static;
+      position: static;
       .text-content{
-        padding: 40px 0;
+        padding: 30px 0 50px;
         width: 100%;
       }
     }
+    &.inverse .image-content,
     .image-content {
       width: initial;
       height: initial;
@@ -907,6 +909,22 @@ img{
     img.logo{
       margin-top: 10px;
       float: right;
+    }
+  }
+  @media only screen and (max-width: $small) {
+    padding-top: 80px;
+    .section-video-bg{
+      object-fit: contain;
+      object-position: top;
+    }
+    .content .title{
+      font-size: 30px;
+      line-height: 55px;
+      margin-bottom: 50px;
+    }
+    .content img.logo{
+      max-width: 70px;
+      object-fit: contain;
     }
   }
 }
@@ -1777,7 +1795,6 @@ img{
       }
       .text-content{
         padding-left: 30px;
-
       }
       .title{
         font-weight: bolder;
