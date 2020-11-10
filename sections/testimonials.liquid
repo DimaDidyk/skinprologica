@@ -38,8 +38,8 @@
 
 			</div><!-- #Swiper Slider -->
 			<!-- Add Arrows -->
-			<div id="testimonials-slider-next" class="swiper-button-next"></div>
-			<div id="testimonials-slider-prev" class="swiper-button-prev"></div>
+			<div id="testimonials-slider-next" class="swiper-button-next hide-mobile"></div>
+			<div id="testimonials-slider-prev" class="swiper-button-prev hide-mobile"></div>
 		</div>
 	</div>
 {% endif %}
@@ -91,10 +91,10 @@
 {% endschema %}
 
 {% javascript %}
-
 var testimonialsSlider = new Swiper('#testimonials-slider', {
     pagination: {
         el: '.swiper-pagination',
+		clickable: true
     },
     navigation: {
         nextEl: '#testimonials-slider-next',
