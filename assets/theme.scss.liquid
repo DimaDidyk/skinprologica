@@ -323,10 +323,27 @@ img{
       display: flex;
       align-items: center;
       padding: 0 10px;
+      position: relative;
       svg{
         fill: $color_first;
         width: 30px;
         height: 30px;
+      }
+      .cart-count{
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 5px;
+        border-radius: 50%;
+        color: $color_first;
+        border: 2px solid $color_first;
+        background: $color_background;
+        font-size: 12px;
+        top: 10px;
+        font-weight: bold;
       }
     }
     a{
@@ -2347,12 +2364,12 @@ img{
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.46);
   cursor: pointer;
-  display: none;
-  &.opened{
-    display: block;
-  }
+  transition: all .3s;
+  opacity: 0;
+  pointer-events: none;
+  display: block;
+  background: rgba(0, 0, 0, 0.46);
   .cart-drawer-container{
     cursor: default;
     background: $color_background;
@@ -2363,6 +2380,8 @@ img{
     top: 0;
     bottom: 0;
     height: 100%;
+    transition: all .4s;
+    margin-right: -400px;
     .close-cart-drawer{
       position: absolute;
       z-index: 1;
@@ -2373,6 +2392,7 @@ img{
         fill: $color_first;
       }
     }
+
 
     .cart-drawer-wrap{
       height: 100%;
@@ -2466,6 +2486,14 @@ img{
           margin-bottom: 20px;
         }
       }
+    }
+  }
+
+  &.opened{
+    opacity: 1;
+    pointer-events: initial;
+    .cart-drawer-container{
+      margin-right: 0;
     }
   }
 }

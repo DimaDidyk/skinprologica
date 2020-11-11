@@ -342,6 +342,7 @@ const theme = {
             buttonOpen: document.getElementById('open-cart-drawer'),
             buttonClose: document.getElementById('close-cart-drawer'),
             subTotalPrice: document.getElementById('cart-drawer-sub-total'),
+            cartCount: document.getElementById('cart-count'),
         },
         open: function (){
             this.elements.cartDrawer.classList.add('opened');
@@ -398,6 +399,14 @@ const theme = {
                 });
             }
         },
+        cartCountUpdate: function (item_count){
+            if( item_count > 0 ) {
+                this.elements.cartCount.innerText = item_count;
+                this.elements.cartCount.style.display = 'flex';
+            }else{
+                this.elements.cartCount.style.display = 'none';
+            }
+        },
         render: function (cart){
             let drawerProductsTemplate = '';
             for (const index in cart.items) {
@@ -405,6 +414,8 @@ const theme = {
             }
             this.elements.drawerProducts.innerHTML = drawerProductsTemplate;
             this.elements.subTotalPrice.innerText = Shopify.formatMoney(cart.total_price, Shopify.money_format);
+            this.cartCountUpdate(cart.item_count);
+
             this.update.event();
             this.remove.event();
             this.open();
