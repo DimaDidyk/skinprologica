@@ -339,10 +339,10 @@ const theme = {
             cartDrawerForm: document.getElementById('cart-drawer-form'),
             cartDrawerContainer: document.getElementById('cart-drawer-container'),
             drawerProducts: document.getElementById('cart-drawer-products'),
-            buttonOpen: document.getElementById('open-cart-drawer'),
+            buttonOpenElements: document.getElementsByClassName('open-cart-drawer'),
             buttonClose: document.getElementById('close-cart-drawer'),
             subTotalPrice: document.getElementById('cart-drawer-sub-total'),
-            cartCount: document.getElementById('cart-count'),
+            cartCountElements: document.getElementsByClassName('cart-count'),
         },
         open: function (){
             this.elements.cartDrawer.classList.add('opened');
@@ -400,11 +400,13 @@ const theme = {
             }
         },
         cartCountUpdate: function (item_count){
-            if( item_count > 0 ) {
-                this.elements.cartCount.innerText = item_count;
-                this.elements.cartCount.style.display = 'flex';
-            }else{
-                this.elements.cartCount.style.display = 'none';
+            for (const cartCountElement of this.elements.cartCountElements) {
+                if( item_count > 0 ) {
+                    cartCountElement.innerText = item_count;
+                    cartCountElement.style.display = 'flex';
+                }else{
+                    cartCountElement.style.display = 'none';
+                }
             }
         },
         render: function (cart){
@@ -445,9 +447,12 @@ const theme = {
             return cartItemTemplate;
         },
         init: function (){
-            this.elements.buttonOpen.addEventListener('click', function (){
-                this.open();
-            }.bind(this));
+            for (const buttonOpen of this.elements.buttonOpenElements) {
+                buttonOpen.addEventListener('click', function (){
+                    this.open();
+                }.bind(this));
+            }
+
             this.elements.buttonClose.addEventListener('click', function () {
                 this.close();
             }.bind(this));

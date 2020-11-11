@@ -48,7 +48,7 @@
 						   class="{% if link.current %}active{% endif %}">{{ link.title }}</a>
 					{% endif %}
 				{% endfor %}
-				<div class="icon-cart" id="open-cart-drawer">
+				<div class="icon-cart open-cart-drawer">
 					{% render 'icon', name: 'cart' %}
 					{% if cart.item_count > 0 %}
 						<div id="cart-count" class="cart-count">{{ cart.item_count }}</div>
@@ -97,6 +97,14 @@
 			{% endfor %}
 		</div>
 		<div class="text-submenu">
+			<div class="">
+				<div class="icon-cart open-cart-drawer">
+					{% render 'icon', name: 'cart' %}
+					{% if cart.item_count > 0 %}
+						<div id="cart-count" class="cart-count">{{ cart.item_count }}</div>
+					{% endif %}
+				</div>
+			</div>
 			{% if settings.tel != blank %}
 				<div class="text">
 					<b class="color_first">Call:</b> {{ settings.tel }}<br>

@@ -318,34 +318,7 @@ img{
     display: flex;
     justify-content: center;
     height: 58px;
-    .icon-cart{
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      position: relative;
-      svg{
-        fill: $color_first;
-        width: 30px;
-        height: 30px;
-      }
-      .cart-count{
-        position: absolute;
-        width: 15px;
-        height: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        right: 5px;
-        border-radius: 50%;
-        color: $color_first;
-        border: 2px solid $color_first;
-        background: $color_background;
-        font-size: 12px;
-        top: 10px;
-        font-weight: bold;
-      }
-    }
+
     a{
       position: relative;
       display: flex;
@@ -381,6 +354,35 @@ img{
   }
 }
 
+.icon-cart{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  position: relative;
+  svg{
+    fill: $color_first;
+    width: 30px;
+    height: 30px;
+  }
+  .cart-count{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 5px;
+    border-radius: 50%;
+    color: $color_first;
+    border: 2px solid $color_first;
+    background: $color_background;
+    font-size: 12px;
+    top: 10px;
+    font-weight: bold;
+  }
+}
+
 // mobile header
 @media only screen and (max-width: $small) {
   body{
@@ -396,6 +398,11 @@ img{
     overflow-y: auto;
     background: $color_background;
     box-shadow: 0px 5px 50px rgba(0, 0, 0, 0.05);
+    .icon-cart{
+      width: max-content;
+      height: 54px;
+      margin: 0 auto;
+    }
     .header-visible-container{
       display: flex;
       align-items: center;
