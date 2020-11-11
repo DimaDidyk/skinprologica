@@ -1,7 +1,18 @@
 <div class="instagram-section">
 	<div class="container">
-		<h2 class="align-center">Check the latest instagram posts</h2>
+		<h3 class="align-center">Check the latest instagram posts</h3>
 
+		{% if settings.instagram != blank %}
+			<a href="{{ settings.instagram }}"
+			   class="instagram-button"
+			   target="_blank">
+				{% render 'icon-instagram' %}
+				{% assign inst = settings.instagram | split: '/' %}
+				<span>@{{ inst[3] }}</span>
+			</a>
+		{% endif %}
+
+		<div class="elfsight-sapp-502e9847-bdf6-4a67-a95f-ed47af212d97"></div>
 	</div>
 </div>
 
