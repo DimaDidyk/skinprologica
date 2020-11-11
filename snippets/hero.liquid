@@ -1,20 +1,30 @@
-<div class="hero{% if template == 'index' %} hero-index{% endif %}">
+<div class="hero{% if template == 'index' %} hero-index{% endif %} page-{{ page_title | handle }}">
 	<div class="gradient "></div>
 	{% if section.settings.hero-image != blank %}
-		<img class="bg-image lazyload js"
-			 src="{{ section.settings.hero-image | img_url: '200x' }}"
+
+		<img class="bg-image lazyload js {% if section.settings.hero-image-mobile != blank %}hide-tab{% endif %}"
+			 src="{{ section.settings.hero-image | img_url: '1x1' }}"
 			 data-src="{{ section.settings.hero-image | img_url: '1920x' }}"
 			 data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
-			 data-aspectratio="{{ section.settings.hero-image.aspect_ratio }}"
 			 data-sizes="auto"
 			 alt="{{ section.settings.hero-image.alt | escape }}">
+
+			{% if section.settings.hero-image-mobile != blank %}
+				<img class="bg-image lazyload js only-tab"
+					 src="{{ section.settings.hero-image-mobile| img_url: '1x1' }}"
+					 data-src="{{ section.settings.hero-image-mobile | img_url: '800x' }}"
+					 data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+					 data-sizes="auto"
+					 alt="{{ section.settings.hero-image-mobile.alt | escape }}">
+			{% endif %}
 
 		{% assign vector = 'hero-vector-1.png' %}
 		{% if template == 'index' %}
 			{% assign vector = 'hero-vector-2.png' %}
 		{% endif %}
-		<img class="hero-sub-bg hero-vector-1 hide-tab"
-			 src="{{ vector | asset_img_url: '800x800' }}"
+		<img class="hero-sub-bg hero-vector-1 hide-tab lazyload"
+			 src="{{ vector | asset_img_url: '1x1' }}"
+			 data-src="{{ vector | asset_img_url: '800x800' }}"
 			 alt="{{ section.settings.heading }}">
 	{% endif %}
 

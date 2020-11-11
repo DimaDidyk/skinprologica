@@ -1,11 +1,15 @@
 <div class="section-banner">
 
-	<img class="vector vector-left"
+	<img class="vector vector-left hide-mobile"
 		 src="{{ 'banner-vector-left.png' | asset_img_url: '800x' }}"
 		 alt="{{ section.settings.heading }}">
 
-	<img class="vector vector-right"
+	<img class="vector vector-right hide-mobile"
 		 src="{{ 'banner-vector-right.png' | asset_img_url: '800x' }}"
+		 alt="{{ section.settings.heading }}">
+
+	<img class="vector only-mobile vector-mobile"
+		 src="{{ 'banner-vector-mobile.png' | asset_img_url: '800x' }}"
 		 alt="{{ section.settings.heading }}">
 
 	<div class="container h-100">
