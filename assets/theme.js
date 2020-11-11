@@ -352,29 +352,25 @@ const theme = {
         },
         update: {
             event: function (){
-                let quantityInputs = theme.cartDrawer.elements.cartDrawerForm.getElementsByClassName('input-qty');
-                for (const quantityInput of quantityInputs) {
-                    quantityInput.addEventListener('change', function (){
-                        this.action();
+                let qtyTriggers = theme.cartDrawer.elements.cartDrawerForm.getElementsByClassName('trigger');
+                for (const qtyTrigger of qtyTriggers) {
+                    qtyTrigger.addEventListener('click', function (){
+                        this.action(qtyTrigger);
                     }.bind(this));
                 }
             },
-            action: function (){
-                const data = this.getData();
-                console.log(data);
+            action: function (qtyTrigger){
+                let id = qtyTrigger.getAttribute('item-id');
+                let value = qtyTrigger.getAttribute('value');
+                let data = {
+                    updates: {
+                        [id]: Number(value)
+                    }
+                };
                 theme.cart.updateCart(data, function (cart){
                     theme.cartDrawer.render(cart);
                 });
-            },
-            getData: function (){
-                let quantityInputs = theme.cartDrawer.elements.cartDrawerForm.getElementsByClassName('input-qty');
-                let data = {updates: {}};
-                for (const quantityInput of quantityInputs) {
-                    let id = quantityInput.getAttribute('item-id');
-                    data.updates[id] = Number(quantityInput.value);
-                }
-                return data;
-            },
+            }
         },
         remove: {
             event: function (){
@@ -421,6 +417,7 @@ const theme = {
             this.update.event();
             this.remove.event();
             this.open();
+
         },
         cartItemTemplate: function (item, index){
             let cartItemTemplate = `
@@ -436,12 +433,18 @@ const theme = {
                             </svg>
                         </div>
                         <div class="cart-item-price">${Shopify.formatMoney(item.price, Shopify.money_format)}</div>
-                        <input type="number" class="input-qty"
-                                name="updates[${item.id}]"
-                                id="updates_${ item.key }"
+                        <div class="cart-item-qty-wrapper">
+                            <div class="minus-one trigger"
                                 item-id="${item.id}"
+                                value="${item.quantity - 1}"><span>–</span></div>
+                            <input type="number" class="input-qty"
+                                name="updates[${item.id}]"
                                 value="${item.quantity}"
                                 min="0">
+                            <div class="plus-one trigger"
+                                item-id="${item.id}"
+                                value="${item.quantity + 1}">+</div>
+                        </div>
                   </div>
             </div>`;
             return cartItemTemplate;

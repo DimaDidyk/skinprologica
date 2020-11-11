@@ -22,12 +22,19 @@
 								<a href="{{ item.url }}" class="cart-item-title">{{ item.product.title }}</a>
 								<div class="remove-cart-item" line="{{ forloop.index }}">{% render 'icon', name: 'close' %}</div>
 								<div class="cart-item-price">{{ item.price | money }}</div>
-								<input type="number" class="input-qty"
-									   name="updates[{{ item.id }}]"
-									   id="updates_{{ item.key }}"
-									   item-id="{{ item.id }}"
-									   value="{{ item.quantity }}"
-									   min="0">
+								<div class="cart-item-qty-wrapper">
+									<div class="minus-one trigger"
+										 item-id="{{ item.id }}"
+										 value="{{ item.quantity | minus: 1 }}"><span>–</span></div>
+									<input type="number" class="input-qty"
+										   name="updates[{{ item.id }}]"
+										   id="updates_{{ item.key }}"
+										   value="{{ item.quantity }}"
+										   min="0">
+									<div class="plus-one trigger"
+										 item-id="{{ item.id }}"
+										 value="{{ item.quantity | plus: 1 }}">+</div>
+								</div>
 								<div class="discounts">
 									{% for discount in item.discounts %}<h5>{{ discount.title }}</h5>{% endfor %}
 								</div>
