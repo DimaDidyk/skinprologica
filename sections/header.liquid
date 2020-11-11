@@ -48,6 +48,9 @@
 						   class="{% if link.current %}active{% endif %}">{{ link.title }}</a>
 					{% endif %}
 				{% endfor %}
+				<div class="icon-cart" id="open-cart-drawer">
+					{% render 'icon', name: 'cart' %}
+				</div>
 			</div>
 		</div>
 	</div>

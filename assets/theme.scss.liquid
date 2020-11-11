@@ -124,6 +124,7 @@ a.acive{
   border: 0;
   background: $color_background;
   color: $color_first;
+  display: block;
   &.btn-primary{
     background: $color_first;
     color: $color_background;
@@ -133,14 +134,21 @@ a.acive{
     color: $color_background;
   }
   &.btn-center{
-    display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+  &.btn-full-width{
+    width: 100%;
   }
   @media only screen and (max-width: $small) {
     width: 100%;
     display: block;
   }
+}
+
+.btn[disabled], input[disabled]{
+  opacity: .5;
+  pointer-events: none;
 }
 
 .only-tab{
@@ -310,6 +318,17 @@ img{
     display: flex;
     justify-content: center;
     height: 58px;
+    .icon-cart{
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      svg{
+        fill: $color_first;
+        width: 30px;
+        height: 30px;
+      }
+    }
     a{
       position: relative;
       display: flex;
@@ -2278,4 +2297,136 @@ img{
 }
 .swiper-button-next, .swiper-container-rtl .swiper-button-prev{
   right: 0;
+}
+
+/**  CART DRAWER   */
+.cart-drawer{
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.46);
+  cursor: pointer;
+  display: none;
+  &.opened{
+    display: block;
+  }
+  .cart-drawer-container{
+    cursor: default;
+    background: $color_background;
+    width: 400px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    .close-cart-drawer{
+      position: absolute;
+      z-index: 1;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+      svg, path{
+        fill: $color_first;
+      }
+    }
+
+    .cart-drawer-wrap{
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .cart-drawer-heading,
+      .cart-drawer-products,
+      .cart-drawer-bottom{
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .cart-drawer-heading{
+        box-shadow: 0 5px 50px rgba(0,0,0,0.05);
+      }
+      .cart-drawer-products{
+        flex: auto;
+        overflow-y: auto;
+        .cart-item{
+          display: flex;
+          justify-content: space-between;
+          position: relative;
+          margin-bottom: 20px;
+          .cart-item-image{
+            display: block;
+            width: 120px;
+            min-width: 120px;
+            height: 120px;
+            min-height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            img{
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+          .cart-item-info{
+            flex: auto;
+            padding-left: 20px;
+            .cart-item-title{
+              padding-right: 30px;
+            }
+            .cart-item-price{
+              font-weight: bold;
+              color: #bc6866;
+              font-size: 20px;
+              line-height: 1.6;
+            }
+            .input-qty{
+              padding: 6px 0;
+              width: 30px;
+              border: 0;
+              font-size: 22px;
+              font-weight: 300;
+              text-align: center;
+              -moz-appearance: textfield;
+              &::-webkit-outer-spin-button,
+              &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
+            }
+          }
+          .remove-cart-item{
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+            cursor: pointer;
+            opacity: .5;
+            transition: opacity .3s;
+            &:hover{
+              opacity: 1;
+            }
+            svg, path{
+              fill: $color_first;
+            }
+            svg{
+              width: 14px;
+              height: 14px;
+            }
+          }
+        }
+      }
+      .cart-drawer-bottom{
+        box-shadow: 0 5px 50px rgba(0,0,0,0.05);
+        .sub-total{
+          font-size: 22px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
 }

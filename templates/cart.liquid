@@ -1,14 +1,14 @@
-{% if cart.item_count > 0 %}
-  <h1>cart</h1>
-  <form action="/cart" method="post" novalidate>
-    <table>
-      <thead>
+<div class="container">
+  {% if cart.item_count > 0 %}
+    <h1 class="align-center">Cart</h1>
+      <table>
+        <thead>
         <th colspan="2">Prod</th>
         <th>Price</th>
         <th>Qty</th>
         <th>total</th>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         {% for item in cart.items %}
           <tr>
             <td>
@@ -32,15 +32,16 @@
             </td>
           </tr>
         {% endfor %}
-      </tbody>
-    </table>
-    <div>
-      <p>sub total : {{ cart.total_price | money }}</p>
-      <button type="submit" name="update">Update</button>
-      <button type="submit" name="checkout">Checkout</button>
-    </div>
-  </form>
-{% else %}
-  <h2>cart</h2>
-  Cart is empty
-{% endif %}
+        </tbody>
+      </table>
+      <div>
+        <p>Sub total : {{ cart.total_price | money }}</p>
+        <button type="submit" name="update" class="btn btn-primary">Update</button>
+        <button type="submit" name="checkout" class="btn btn-secondary">Checkout</button>
+      </div>
+    </form>
+  {% else %}
+    <h2 class="align-center">Cart</h2>
+    <h4 class="align-center">Cart is empty</h4>
+  {% endif %}
+</div>

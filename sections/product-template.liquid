@@ -38,7 +38,6 @@
 						{% endfor %}
 					</select>
 					<input type="number" id="Quantity" name="quantity" value="1" min="1" class="hidden">
-					{% comment %}<input type="hidden" name="return_to" value="/checkout" />{% endcomment %}
 					{% if product.type contains BOTOX %}
 						<a href="/pages/schedule" class="btn btn-primary flex">Book an Appointment</a>
 					{% else %}
@@ -46,6 +45,7 @@
 						<button type="submit"
 								name="add"
 								class="btn btn-primary"
+								disabled="disabled"
 								id="AddToCart">Click here to Buy</button>
 					{% endif %}
 				</form>

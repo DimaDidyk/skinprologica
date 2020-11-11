@@ -1,0 +1,48 @@
+<div id="cart-drawer" class="cart-drawer">
+	<div id="cart-drawer-container" class="cart-drawer-container">
+		<div id="close-cart-drawer" class="close-cart-drawer">
+			{% render 'icon', name: 'close' %}
+		</div>
+		<form action="/cart"
+			  method="post"
+			  novalidate
+			  id="cart-drawer-form"
+			  class="cart-drawer-wrap">
+			<div class="cart-drawer-heading">
+				<h3 class="cart-drawer-title align-center no-margin">Cart</h3>
+			</div>
+			<div id="cart-drawer-products" class="cart-drawer-products">
+				{% if cart.item_count > 0 %}
+					{% for item in cart.items %}
+						<div class="cart-item">
+							<a class="cart-item-image" href="{{ item.url | within: collections.all }}">
+								<img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+							</a>
+							<div class="cart-item-info">
+								<a href="{{ item.url }}" class="cart-item-title">{{ item.product.title }}</a>
+								<div class="remove-cart-item" line="{{ forloop.index }}">{% render 'icon', name: 'close' %}</div>
+								<div class="cart-item-price">{{ item.price | money }}</div>
+								<input type="number" class="input-qty"
+									   name="updates[{{ item.id }}]"
+									   id="updates_{{ item.key }}"
+									   item-id="{{ item.id }}"
+									   value="{{ item.quantity }}"
+									   min="0">
+								<div class="discounts">
+									{% for discount in item.discounts %}<h5>{{ discount.title }}</h5>{% endfor %}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				{% else %}
+					<h2 class="align-center">Cart is empty</h2>
+				{% endif %}
+			</div>
+			<div class="cart-drawer-bottom">
+				<div class="sub-total align-center">Sub total: <b id="cart-drawer-sub-total" class="color_first">{{ cart.total_price | money }}</b></div>
+				{% comment %}<button type="submit" name="update" class="btn btn-primary btn-full-width">Update</button>{% endcomment %}
+				<button type="submit" name="checkout" class="btn btn-primary btn-full-width">Checkout</button>
+			</div>
+		</form>
+	</div>
+</div>
