@@ -12,7 +12,7 @@
 
             <h3 class="article-title align-center">{{ article.title }}</h3>
             <img src="{{ article.image | img_url: '1x1' }}"
-                 data-src="{{ article.image| img_url: 'large' }}"
+                 data-src="{{ article.image| img_url: '1600x800' }}"
                  alt="{{  article.title | escape }}"
                  class="lazyload article-image"
             >

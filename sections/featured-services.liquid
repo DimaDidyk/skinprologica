@@ -10,7 +10,7 @@
                     <a href="{{ block.settings.url }}">
                 {% endif %}
 
-                <div class="service-item{% if block.settings.title != blank %} shadow{% endif %}">
+                <div class="service-item">
                     {% if block.settings.image != blank %}
                         <img class="lazyload bg-image"
                              src="{{ block.settings.image | img_url: '1x1' }}"

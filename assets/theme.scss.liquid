@@ -696,7 +696,7 @@ img{
         margin-bottom: 12px;
       }
       .logo{
-        width: 80px;
+        width: 84px;
         margin: 0 auto;
         img{
           object-fit: contain;
@@ -928,9 +928,7 @@ img{
       box-sizing: border-box;
       display: flex;
       align-items: flex-end;
-      &.shadow{
-        background: rgba(0, 0, 0, 0.31);
-      }
+      transition: all .3s;
       .bg-image{
         position: absolute;
         left: 0;
@@ -944,6 +942,14 @@ img{
         color: $color_body_text_light;
         font-size: 25px;
         line-height: 34px;
+        opacity: 0;
+        transition: all .3s;
+      }
+      &:hover{
+        background: rgba(0, 0, 0, 0.31);
+        .service-title{
+          opacity: 1;
+        }
       }
     }
   }
@@ -1832,18 +1838,16 @@ img{
   .product-tab-heading{
     box-shadow: 0 10px 20px rgba(136, 131, 131, 0.1);
     border-radius: 10px;
-    font-size: 25px;
-    line-height: 26px;
     margin-bottom: 37px;
     cursor: pointer;
     position: relative;
-
     .heading{
       opacity: .8;
       font-weight: 300;
-      padding: 10px 20px;
+      padding: 15px 20px;
       position: relative;
-
+      font-size: 25px;
+      line-height: 26px;
     }
     &::after{
       content: '';
@@ -1854,7 +1858,7 @@ img{
       transform: rotate(-45deg);
       position: absolute;
       right: 30px;
-      top: 20px;
+      top: 18px;
       border-radius: 2px;
       transition: all .3s;
     }

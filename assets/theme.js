@@ -472,12 +472,30 @@ const theme = {
         }
     },
 
+    slidersInit: function(){
+        const collectionNavSlider = new Swiper('#collection-navigation-slider', {
+            slidesPerView: 'auto',
+            centerInsufficientSlides: 'true',
+        });
+        const testimonialsSlider = new Swiper('#testimonials-slider', {
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '#testimonials-slider-next',
+                prevEl: '#testimonials-slider-prev',
+            }
+        });
+    },
+
     init: function (){
         this.mobileMenu.init();
         this.popup.init();
         this.product.init();
         this.collection.init();
         this.cartDrawer.init();
+        this.slidersInit();
     },
 }
 window.theme = theme || {};
