@@ -530,7 +530,7 @@ img{
     object-fit: contain;
   }
   &.hero-index .bg-image{
-    object-fit: cover;
+
   }
   .hero-sub-bg{
     position: absolute;
@@ -580,9 +580,9 @@ img{
       font-size: 20px;
       line-height: 27px;
     }
-    .btn{
-      margin-top: 50px;
-    }
+  }
+  .btn{
+    margin-top: 50px;
   }
 
   @media only screen and (max-width: $medium) {
@@ -626,6 +626,7 @@ img{
   }
 
   @media only screen and (max-width: $medium) {
+    &.hero-index,
     &.page-contact-us,
     &.page-schedule,
     &.page-consultation,
@@ -652,6 +653,16 @@ img{
       }
     }
 
+    &.hero-index{
+      .hero-sub-bg{
+        display: none;
+      }
+      .btn{
+        width: 400px;
+        max-width: 100%;
+      }
+    }
+
     &.page-contact-us,
     &.page-schedule,
     &.page-consultation{
@@ -662,6 +673,36 @@ img{
       .hero-content{
         padding-top: 100px;
         padding-bottom: 100px;
+      }
+    }
+
+    &.hero-index{
+      padding-bottom: 420px;
+      .hero-content .btn{
+        width: 100%;
+      }
+      .bg-image{
+        height: 440px;
+        width: 100%;
+        object-fit: contain;
+        object-position: center;
+      }
+
+    }
+  }
+  @media only screen and (max-width: 580px) {
+    &.hero-index {
+      .bg-image{
+        object-fit: cover;
+      }
+    }
+  }
+  @media only screen and (max-width: 430px) {
+    &.hero-index {
+      .bg-image{
+        width: calc(100% + 40px);
+        margin-left: -40px;
+        max-width: initial;
       }
     }
   }

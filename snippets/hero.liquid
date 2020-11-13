@@ -46,8 +46,11 @@
 			{% endif %}
 
 			{% if section.settings.button-text != blank and section.settings.button-url != blank %}
-				<a class="btn {% if template == 'index' %}btn-primary{% endif %} btn-center" href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
+				<a class="btn {% if template == 'index' %}btn-primary{% endif %} btn-center hide-tab" href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
 			{% endif %}
 		</div>
+		{% if section.settings.button-text != blank and section.settings.button-url != blank %}
+			<a class="btn {% if template == 'index' %}btn-primary{% endif %} btn-center only-tab" href="{{ section.settings.button-url }}">{{ section.settings.button-text }}</a>
+		{% endif %}
 	</div>
 </div>
