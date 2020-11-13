@@ -487,6 +487,26 @@ const theme = {
                 prevEl: '#testimonials-slider-prev',
             }
         });
+        const recommendationsSlider = new Swiper('#product-recommendations-slider', {
+            slidesPerView: 1,
+            spaceBetween: 15,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true
+            },
+            navigation: {
+                nextEl: '#recommendations-slider-next',
+                prevEl: '#recommendations-slider-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                992: {
+                    slidesPerView: 3,
+                }
+            }
+        });
     },
 
     init: function (){
