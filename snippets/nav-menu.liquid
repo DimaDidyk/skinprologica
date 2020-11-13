@@ -1,0 +1,17 @@
+{% for link in linklists[menu].links %}
+	{% assign child_list_handle = link.title | handleize %}
+	{% if linklists[child_list_handle].links != blank %}
+		<div class="menu-item{% if link.current %} active{% endif %}">
+			<a href="{{ link.url }}">{{ link.title }} {% render 'icon', name: 'arrow-down' %}</a>
+			<div class="sub-menu">
+				{% for childlink in linklists[child_list_handle].links %}
+					<a href="{{ childlink.url }}" class="{% if childlink.current %} active{% endif %}">{{ childlink.title | escape }}</a>
+				{% endfor %}
+			</div>
+		</div>
+	{% else %}
+		<div class="menu-item{% if link.current %} active{% endif %}">
+			<a href="{{ link.url }}">{{ link.title }}</a>
+		</div>
+	{% endif %}
+{% endfor %}

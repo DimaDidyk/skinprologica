@@ -35,25 +35,8 @@
 	<div class="header-menu-container">
 		<div class="container">
 			<div class="header-menu">
-				{% for link in linklists[section.settings.menu].links %}
-					{% assign child_list_handle = link.title | handleize %}
-					{% if linklists[child_list_handle].links != blank %}
-						<a href="{{ link.url }}"
-						   class="{% if link.current %}active{% endif %}">{{ link.title }}</a>
-						[{% for childlink in linklists[child_list_handle].links %}
-						<a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-					{% endfor %}]
-					{% else %}
-						<a href="{{ link.url }}"
-						   class="{% if link.current %}active{% endif %}">{{ link.title }}</a>
-					{% endif %}
-				{% endfor %}
-				<div class="icon-cart open-cart-drawer">
-					{% render 'icon', name: 'cart' %}
-					{% if cart.item_count > 0 %}
-						<div id="cart-count" class="cart-count">{{ cart.item_count }}</div>
-					{% endif %}
-				</div>
+				{% render 'nav-menu', menu: section.settings.menu %}
+				{% render 'cart-icon-with-counter' %}
 			</div>
 		</div>
 	</div>
@@ -82,28 +65,13 @@
 
 	<div id="mobile-toggle-content" class="mobile-toggle-content">
 		<div class="mobile-menu header-menu">
-			{% for link in linklists[section.settings.menu].links %}
-				{% assign child_list_handle = link.title | handleize %}
-				{% if linklists[child_list_handle].links != blank %}
-					<a href="{{ link.url }}"
-					   class="{% if link.current %}active{% endif %}">{{ link.title }}</a>
-					[{% for childlink in linklists[child_list_handle].links %}
-					<a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-				{% endfor %}]
-				{% else %}
-					<a href="{{ link.url }}"
-					   class="{% if link.current %}active{% endif %}">{{ link.title }}</a>
-				{% endif %}
-			{% endfor %}
+
+			{% render 'nav-menu', menu: section.settings.menu %}
+
 		</div>
 		<div class="text-submenu">
-			<div class="">
-				<div class="icon-cart open-cart-drawer">
-					{% render 'icon', name: 'cart' %}
-					{% if cart.item_count > 0 %}
-						<div id="cart-count" class="cart-count">{{ cart.item_count }}</div>
-					{% endif %}
-				</div>
+			<div>
+				{% render 'cart-icon-with-counter' %}
 			</div>
 			{% if settings.tel != blank %}
 				<div class="text">
