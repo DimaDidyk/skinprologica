@@ -4,8 +4,8 @@
     "theme_name": "Themekit template theme",
     "theme_version": "1.0.0",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https://github.com/Shopify/themekit",
-    "theme_support_url": "https://github.com/Shopify/themekit/issues"
+    "theme_documentation_url": "https:\/\/github.com\/Shopify\/themekit",
+    "theme_support_url": "https:\/\/github.com\/Shopify\/themekit\/issues"
   },
   {
     "name": "Fonts",
@@ -37,7 +37,7 @@
         "type": "richtext",
         "id": "address",
         "label": "Address",
-        "default": "<p>226 5th Avenue, 6th Floor\nNew York, NY, 10001</p>"
+        "default": "<p>226 5th Avenue, 6th Floor\nNew York, NY, 10001<\/p>"
       },
       {
         "type": "text",
@@ -49,7 +49,7 @@
         "type": "richtext",
         "id": "schedule",
         "label": "Schedule",
-        "default": "<p>10am - 7pm Mon - Sat</p>"
+        "default": "<p>10am - 7pm Mon - Sat<\/p>"
       },
       {
         "type": "text",
@@ -138,19 +138,19 @@
     "name": "Social",
     "settings": [
       {
-          "type": "url",
-          "id": "instagram",
-          "label": "Instagram"
+        "type": "url",
+        "id": "instagram",
+        "label": "Instagram"
       },
       {
-          "type": "url",
-          "id": "twitter",
-          "label": "Twitter"
+        "type": "url",
+        "id": "twitter",
+        "label": "Twitter"
       },
       {
-          "type": "url",
-          "id": "facebook",
-          "label": "Facebook"
+        "type": "url",
+        "id": "facebook",
+        "label": "Facebook"
       }
     ]
   }
