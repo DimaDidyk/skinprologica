@@ -1185,8 +1185,9 @@ img{
   .employers{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     .employee-item{
-      width: 25%;
+      width: 33.33%;
       text-align: center;
       .avatar-container{
         position: relative;
@@ -1829,6 +1830,12 @@ img{
     width: calc(50% - 25px);
     .product-title{
     }
+    .selected-variant-title{
+      font-size: 16px;
+      line-height: 16px;
+      margin-bottom: 16px;
+      font-weight: bold;
+    }
     .product-price{
       font-weight: bold;
       font-size: 24px;
@@ -1840,6 +1847,24 @@ img{
       font-size: 14px;
       line-height: 19px;
     }
+    .product-variants{
+      margin-top: 50px;
+      .product-variant-wrapper{
+        display: flex;
+        padding: 20px 0 0;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .variant-title{
+        width: 36%;
+        text-align: center;
+      }
+      .add-product-variant{
+        margin-left: 20px;
+        margin-top: 0;
+      }
+    }
+
     .btn{
       margin-top: 50px;
       display: block;

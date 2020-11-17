@@ -20,23 +20,18 @@
 
 			<div class="product-info">
 				<h1 class="product-title">{{ product.title }}</h1>
+				{% if product.selected_variant.title != blank %}
+					<div class="selected-variant-title">{{ product.selected_variant.title }}</div>
+				{% endif %}
 				<div class="product-price">{{ current_variant.price | money }}</div>
 
 				<div class="product-description">{{ description[0] }}</div>
 				<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-					<select name="id" id="productSelect" hidden>
-						{% for variant in product.variants %}
-							{% if variant.available %}
-								<option value="{{ variant.id }}">
-									{{ variant.title }} - {{ variant.price | money_with_currency }}
-								</option>
-							{% else %}
-								<option disabled="disabled">
-									{{ variant.title }} - sold out
-								</option>
-							{% endif %}
-						{% endfor %}
-					</select>
+
+					<input type="hidden"
+						   name="id"
+						   value="{% if product.selected_variant != blank %}{{product.selected_variant.id}}{% else %}{{product.first_available_variant.id}}{% endif %}">
+
 					<input type="number" id="Quantity" name="quantity" value="1" min="1" class="hidden">
 					{% if product.type contains BOTOX %}
 						<a href="/pages/schedule" class="btn btn-primary flex">Book an Appointment</a>
@@ -48,6 +43,24 @@
 								disabled="disabled"
 								id="AddToCart">Click here to Buy</button>
 					{% endif %}
+
+					{% if product.variants.size > 1 %}
+						<div class="product-variants">
+							{% for variant in product.variants %}
+								{% if variant.available %}
+									<div class="product-variant-wrapper">
+										<div class="variant-title">
+											{{ variant.title }}
+										</div>
+										<div class="btn btn-secondary add-product-variant" variant-id="{{ variant.id }}">
+											Buy Now / {{ variant.price | money }}
+										</div>
+									</div>
+								{% endif %}
+							{% endfor %}
+						</div>
+					{% endif %}
+
 				</form>
 			</div>
 		</div>

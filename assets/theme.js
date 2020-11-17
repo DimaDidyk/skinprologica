@@ -71,8 +71,6 @@ const theme = {
                 if( collectionHandle === '' ){
                     collectionHandle = 'all';
                 }
-                console.log(collectionHandle);
-
                 theme.getCollectionProducts(collectionHandle).then(function (collection) {
                     const tabsObject = _this.getTabsObject();
                     const productByTab = _this.getProductsByTab(collection.products, tabsObject);
@@ -144,7 +142,17 @@ const theme = {
                 tmp.innerHTML = html;
                 return tmp.textContent || tmp.innerText || "";
             },
-            productGridItem: function (product){
+            productGridItem: function (product, variant){
+                let variantId = '';
+                let variantTitle = '';
+                let productPrice = product.variants[0].price;
+                if( variant !== undefined ){
+                    console.log(variant);
+                    variantId = '?variant=' + variant.id;
+                    variantTitle = variant.title;
+                    productPrice = variant.price;
+                }
+
                 let text = '';
                 for (const tag of product.tags) {
                     if(tag.includes('text__')){
@@ -152,21 +160,21 @@ const theme = {
                     }
                 }
                 return `
-            <div class="product-grid-item">
-                <a href="/products/${ product.handle }">
-                    <span class="img-wrap">
-                        <img class="product-img"
-                             src="${ product.images[0].src }}"
-                             alt="${ product.title }" />
+                <div class="product-grid-item">
+                    <a href="/products/${ product.handle }/${variantId}">
+                        <span class="img-wrap">
+                            <img class="product-img"
+                                 src="${ product.images[0].src }}"
+                                 alt="${ product.title }" />
+                            </span>
+                            <span class="product-info">
+                            <div class="product-title">${ product.title }</div>
+                            <div class="some-text"><b>${ variantTitle }</b></div>
+                            <div class="product-price"><strong>$${ productPrice }</strong></div>
+                            <span class="desc">${ this.stripHtml(product.body_html) }</span>
                         </span>
-                        <span class="product-info">
-                        <div class="product-title">${ product.title }</div>
-                        <div class="some-text"><b>${ text }</b></div>
-                        <div class="product-price"><strong>$${ product.variants[0].price }</strong></div>
-                        <span class="desc">${ this.stripHtml(product.body_html) }</span>
-                    </span>
-                </a>
-            </div>`
+                    </a>
+                </div>`;
             },
             collectionTab: function (tabContent){
                 let tabTemplate = `
@@ -178,7 +186,13 @@ const theme = {
                         <div class="product-grid">`;
 
                 for (const product of tabContent.products) {
-                    tabTemplate += this.productGridItem(product);
+                    if( product.variants.length > 1 ){
+                        for (const variant of product.variants) {
+                            tabTemplate += this.productGridItem(product, variant);
+                        }
+                    }else{
+                        tabTemplate += this.productGridItem(product);
+                    }
                 }
                 tabTemplate += `</div></div></div>`;
                 return tabTemplate;
@@ -272,8 +286,19 @@ const theme = {
                 });
             }
         },
+        addProductToCart(data){
+            console.log(data);
+            theme.cart.addToCart(data, function (){
+                theme.cart.getCart(function (cart){
+                    theme.cartDrawer.render(cart);
+                });
+            }, function (err){
+                console.log(err);
+            });
+        },
         init: function (){
             this.productTabs();
+            let addVariantToCartButtons = document.getElementsByClassName('add-product-variant');
 
             let addToCartButton = document.getElementById('AddToCart');
             if (addToCartButton){
@@ -281,20 +306,26 @@ const theme = {
             }
 
             let addToCartForm = document.getElementById('AddToCartForm');
+
             if( addToCartForm ){
+                for (const addVariantButton of addVariantToCartButtons) {
+                    addVariantButton.addEventListener('click', function (){
+                        let variantId = addVariantButton.getAttribute('variant-id');
+                        let data = {
+                            id: variantId,
+                            quantity: 1
+                        }
+                        this.addProductToCart(data);
+                    }.bind(this));
+                }
+
                 addToCartForm.addEventListener('submit', function (event) {
                     event.preventDefault();
                     let data = Object.fromEntries(new FormData(event.target));
-                    theme.cart.addToCart(data, function (){
-                        theme.cart.getCart(function (cart){
-                            theme.cartDrawer.render(cart);
-                        });
-                    }, function (err){
-                        console.log(err);
-                    });
+                    this.addProductToCart(data);
                 }.bind(this));
             }
-        }
+        },
     },
 
     popup: {
