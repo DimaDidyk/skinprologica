@@ -77,7 +77,7 @@ const theme = {
                     let collectionTemplate = '';
                     for (const tabContent of productByTab) {
                         if( tabContent.products.length > 0 ){
-                            collectionTemplate += _this.getTemplate.collectionTab(tabContent);
+                            collectionTemplate += _this.getTemplate.collectionTab(tabContent, collectionHandle);
                         }
                     }
                     const collectionProducts = document.getElementById('collection-products');
@@ -142,7 +142,7 @@ const theme = {
                 tmp.innerHTML = html;
                 return tmp.textContent || tmp.innerText || "";
             },
-            productGridItem: function (product, variant){
+            productGridItem: function (collectionHandle, product, variant){
                 let variantId = '';
                 let variantTitle = '';
                 let productPrice = product.variants[0].price;
@@ -161,7 +161,7 @@ const theme = {
                 }
                 return `
                 <div class="product-grid-item">
-                    <a href="/products/${ product.handle }/${variantId}">
+                    <a href="/collections/${collectionHandle}/products/${ product.handle }/${variantId}">
                         <span class="img-wrap">
                             <img class="product-img"
                                  src="${ product.images[0].src }}"
@@ -176,7 +176,7 @@ const theme = {
                     </a>
                 </div>`;
             },
-            collectionTab: function (tabContent){
+            collectionTab: function (tabContent, collectionHandle){
                 let tabTemplate = `
                 <div class="product-tab unselectable">
                     <div class="product-tab-heading align-center">
@@ -186,9 +186,9 @@ const theme = {
                         <div class="product-grid">`;
 
                 for (const product of tabContent.products) {
-                    if( product.variants.length > 1 ){
+                    if( product.variants.length > 0 ){
                         for (const variant of product.variants) {
-                            tabTemplate += this.productGridItem(product, variant);
+                            tabTemplate += this.productGridItem(collectionHandle, product, variant);
                         }
                     }else{
                         tabTemplate += this.productGridItem(product);
