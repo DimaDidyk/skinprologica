@@ -1146,8 +1146,8 @@ img{
       }
     }
     img.logo{
-      margin-top: 10px;
-      float: right;
+      display: block;
+      margin: 20px auto;
     }
   }
   @media only screen and (max-width: $small) {
@@ -1186,9 +1186,13 @@ img{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 900px;
+    max-width: 100%;
+    margin: 0 auto 0;
     .employee-item{
       width: 33.33%;
       text-align: center;
+      padding-top: 20px;
       .avatar-container{
         position: relative;
         .vector-bg{
@@ -2722,3 +2726,15 @@ img{
     }
   }
 }
+
+// calendly-inline-widget
+.calendly-inline-widget{
+  overflow-y: hidden !important;
+  @media only screen and (max-width: 999px) {
+    height: 1100px !important;
+  }
+  @media only screen and (max-width: 649px) {
+    height: 1033px !important;
+  }
+}
+

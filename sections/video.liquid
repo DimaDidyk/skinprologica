@@ -4,6 +4,13 @@
 		 alt="{{ section.settings.heading }}">
 	<div class="container">
 		<div class="content">
+			{% if section.settings.logo != blank %}
+				<img class="logo lazyload js"
+					 src="{{ section.settings.logo | img_url: '1x1' }}"
+					 data-src="{{ section.settings.logo | img_url: '320x' }}"
+					 alt="{{ section.settings.logo.alt | escape }}">
+			{% endif %}
+
 			{% if section.settings.title != blank %}
 				<h3 class="title align-center no-margin">{{ section.settings.title }}</h3>
 			{% endif %}
@@ -13,14 +20,6 @@
 					<iframe width="1920" height="800" src="https://www.youtube.com/embed/{{ section.settings.video-url.id }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 				</div>
 			{% endif %}
-
-			{% if section.settings.logo != blank %}
-				<img class="logo lazyload js"
-					 src="{{ section.settings.logo | img_url: '1x1' }}"
-					 data-src="{{ section.settings.logo | img_url: '120x' }}"
-					 alt="{{ section.settings.logo.alt | escape }}">
-			{% endif %}
-
 		</div>
 	</div>
 </div>
