@@ -6,18 +6,30 @@
 	<div class="container">
 		<div class="product-template-content">
 			<div class="product-image">
-				{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-				<img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" id="ProductPhotoImg">
 
-				{% comment %}
-				{% for image in product.images %}
-					<a href="{{ image.src | img_url: 'large' }}">
-						<img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-					</a>
-				{% endfor %}
-				{% endcomment %}
+				{% if product.media.size == 1 %}
+					{% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+					<img src="{{ featured_image | img_url: 'large' }}">
+				{% else %}
+					<!-- Swiper -->
+					<div class="swiper-container gallery-top">
+						<div class="swiper-wrapper">
+							{% for media in product.media %}
+								<div class="swiper-slide">{% include 'media', size: '900x900' %}</div>
+							{% endfor %}
+						</div>
+					</div>
+
+					<div class="swiper-container gallery-thumbs">
+						<div class="swiper-wrapper">
+							{% for media in product.media %}
+								<div class="swiper-slide">{% include 'media', size: '300x300', preview: true %}</div>
+							{% endfor %}
+						</div>
+					</div>
+				{% endif %}
+
 			</div>
-
 			<div class="product-info">
 				<h1 class="product-title">{{ product.title }}</h1>
 				{% if product.selected_variant.title != blank %}
@@ -43,26 +55,27 @@
 								disabled="disabled"
 								id="AddToCart">Click here to Buy</button>
 					{% endif %}
-
-					{% if product.variants.size > 1 %}
-						<div class="product-variants">
-							{% for variant in product.variants %}
-								{% if variant.available %}
-									<div class="product-variant-wrapper">
-										<div class="variant-title">
-											{{ variant.title }}
-										</div>
-										<div class="btn btn-secondary add-product-variant" variant-id="{{ variant.id }}">
-											Buy Now / {{ variant.price | money }}
-										</div>
-									</div>
-								{% endif %}
-							{% endfor %}
-						</div>
-					{% endif %}
-
 				</form>
 			</div>
+
+			{% if product.variants.size > 1 %}
+				<div class="product-variants">
+					{% for variant in product.variants %}
+						{% if variant.available %}
+							<div class="product-variant-wrapper">
+								<div class="variant-title">
+									{{ variant.title }}
+								</div>
+								<div class="button-wrap">
+									<div class="btn btn-secondary add-product-variant" variant-id="{{ variant.id }}">
+										Buy Now / {{ variant.price | money }}
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			{% endif %}
 		</div>
 	</div>
 </div>

@@ -299,14 +299,11 @@ const theme = {
         init: function (){
             this.productTabs();
             let addVariantToCartButtons = document.getElementsByClassName('add-product-variant');
-
             let addToCartButton = document.getElementById('AddToCart');
             if (addToCartButton){
                 addToCartButton.removeAttribute('disabled');
             }
-
             let addToCartForm = document.getElementById('AddToCartForm');
-
             if( addToCartForm ){
                 for (const addVariantButton of addVariantToCartButtons) {
                     addVariantButton.addEventListener('click', function (){
@@ -318,7 +315,6 @@ const theme = {
                         this.addProductToCart(data);
                     }.bind(this));
                 }
-
                 addToCartForm.addEventListener('submit', function (event) {
                     event.preventDefault();
                     let data = Object.fromEntries(new FormData(event.target));
@@ -536,6 +532,20 @@ const theme = {
                 992: {
                     slidesPerView: 3,
                 }
+            }
+        });
+
+        const galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 15,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+        });
+        const galleryTop = new Swiper('.gallery-top', {
+            spaceBetween: 0,
+            thumbs: {
+                swiper: galleryThumbs
             }
         });
     },
