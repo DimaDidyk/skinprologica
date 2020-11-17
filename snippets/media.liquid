@@ -1,6 +1,21 @@
 {% case media.media_type %}
 	{% when 'image' %}
-		<img src="{{ media | img_url: size }}" data-media-id="{{ media.id }}">
+
+		{% if media.alt contains "vimeo.com" %}
+			{% if preview == true %}
+				<img src="{{ media | img_url: size }}" data-media-id="{{ media.id }}">
+			{% else %}
+				{% assign vimeo_id = media.alt | split: '/' | last %}
+				<div class="product-single__media"
+					 style="padding-top: 58%;"
+				>
+					<iframe src="https://player.vimeo.com/video/{{ vimeo_id }}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+				</div>
+			{% endif %}
+		{% else %}
+			<img src="{{ media | img_url: size }}" data-media-id="{{ media.id }}">
+		{% endif %}
+
 	{% when 'external_video' %}
 
 		{% if preview == true %}
