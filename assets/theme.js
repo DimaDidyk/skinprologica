@@ -56,7 +56,7 @@ const theme = {
     getCollectionProducts: function (collectionHandle){
         return new Promise(function(resolve, reject){
             try {
-                $.getJSON('/collections/' + collectionHandle + '/products.json', resolve);
+                $.getJSON('/collections/' + collectionHandle + '/products.json?limit=250', resolve);
             }catch (e){
                 reject(e);
             }
@@ -147,7 +147,6 @@ const theme = {
                 let variantTitle = '';
                 let productPrice = product.variants[0].price;
                 if( variant !== undefined ){
-                    console.log(variant);
                     variantId = '?variant=' + variant.id;
                     variantTitle = variant.title;
                     productPrice = variant.price;
