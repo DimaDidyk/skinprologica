@@ -2,7 +2,8 @@
 	<div class="container container-large">
 		<h2 class="title align-center no-margin">Featured Results</h2>
 
-		<div class="featured-results">
+		<div class="featured-results" id="featured-results">
+			{% comment %}
 			{% for block in section.blocks %}
 				<div class="item open-popup"
 					 popup-image-src="{{ block.settings.image | img_url: '1200x1200'}}">
@@ -17,9 +18,59 @@
 					{% endif %}
 				</div>
 			{% endfor %}
+			{% endcomment %}
 		</div>
 	</div>
 </div>
+
+<script>
+
+	function getRandomElements(array, count, res = []){
+	    if( array.length !== 0 ){
+			array = Array.from(array);
+			let randomIndex = Math.floor(Math.random() * array.length);
+			res.push(array.splice(randomIndex, 1)[0]);
+			if( res.length < count ){
+				return getRandomElements(array, count, res);
+			}
+			return res;
+        }
+	    return res;
+    }
+
+    function loadFeaturedResults(url, id, callback) {
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function() {
+            if ( request.readyState === 4 || request.readyState === 200 ) {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(request.responseText, "text/html");
+                let allItemsHTML = doc.getElementById(id);
+                let allItems = allItemsHTML.getElementsByClassName('item');
+                let randomElements = getRandomElements(allItems, 3);
+                let featuredResultDOM = document.getElementById('featured-results');
+
+                if( randomElements.length !== 0 ){
+                    featuredResultDOM.innerHTML = '';
+                    for (const element of randomElements) {
+                        featuredResultDOM.append(element);
+                    }
+				}
+
+                callback();
+            }
+        }
+        request.open('GET', url, true);
+        request.send('');
+    }
+
+    loadFeaturedResults(
+		'{{shop.url}}/pages/before-and-after',
+		'before-after-all-items',
+		function(){
+			theme.popup.init();
+		}
+	);
+</script>
 
 {% schema %}
 {

@@ -2,7 +2,6 @@
 	<div class="container {% if template != 'index' %}container-large{% endif %}">
 		<h3 class="align-center">Before and After</h3>
 		<div class="before-container" id="before-after-all-items">
-
 			{% for block in section.blocks %}
 				<div class="item open-popup" popup-image-src="{{ block.settings.image | img_url: '1200x1200'}}">
 					{% if block.settings.image != blank %}
@@ -54,18 +53,20 @@
     }
 
     let buttonElement = document.getElementById('get-all-before-after');
-    buttonElement.addEventListener('click', function(){
-        let button = this;
-        load(
-            '{{shop.url}}/pages/before-and-after',
-			'before-after-all-items',
-			function(){
-                console.log('hide');
-                button.style.display = 'none';
-                theme.popup.init();
-        	}
-        );
-    });
+    if( buttonElement ){
+		buttonElement.addEventListener('click', function(){
+			let button = this;
+			load(
+				'{{shop.url}}/pages/before-and-after',
+				'before-after-all-items',
+				function(){
+					console.log('hide');
+					button.style.display = 'none';
+					theme.popup.init();
+				}
+			);
+		});
+    }
 </script>
 
 {% schema %}
