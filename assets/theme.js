@@ -63,6 +63,14 @@ const theme = {
         });
     },
 
+    imgURL: function(src, size) {
+        return src
+            .replace(/_(pico|icon|thumb|small|compact|medium|large|grande|original|1024x1024|2048x2048|master)+\./g, '.')
+            .replace(/\.jpg|\.png|\.gif|\.jpeg/g, function(match) {
+                return '_'+size+match;
+            });
+    },
+
     collection: {
         dataTabs: [],
         render: function (collectionHandle){
@@ -163,7 +171,7 @@ const theme = {
                     <a href="/collections/${collectionHandle}/products/${ product.handle }/${variantId}">
                         <span class="img-wrap">
                             <img class="product-img"
-                                 src="${ product.images[0].src }}"
+                                 src="${ theme.imgURL(product.images[0].src, '320x320')  }}"
                                  alt="${ product.title }" />
                             </span>
                             <span class="product-info">
@@ -212,6 +220,7 @@ const theme = {
             this.changeCollection();
         },
     },
+
 
     cart: {
         headers: {
