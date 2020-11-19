@@ -32,7 +32,7 @@
 			</div>
 			<div class="product-info">
 				<h1 class="product-title">{{ product.title }}</h1>
-				{% if product.selected_variant.title != blank %}
+				{% if product.selected_variant.title != blank and product.selected_variant.title != 'Default Title' %}
 					<div class="selected-variant-title">{{ product.selected_variant.title }}</div>
 				{% endif %}
 				<div class="product-price">{{ current_variant.price | money }}</div>

@@ -148,7 +148,7 @@ const theme = {
                 let productPrice = product.variants[0].price;
                 if( variant !== undefined ){
                     variantId = '?variant=' + variant.id;
-                    variantTitle = variant.title;
+                    variant.title === 'Default Title' ? variantTitle = '' : variantTitle = variant.title;
                     productPrice = variant.price;
                 }
 
