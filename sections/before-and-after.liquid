@@ -31,11 +31,12 @@
 		</div>
 
 		{% if template == 'index' %}
-			<div class="btn btn-primary btn-center" id="get-all-before-after">See more</div>
+			<a href="/pages/before-and-after" class="btn btn-primary btn-center" id="get-all-before-after" >See more</a>
 		{% endif %}
 	</div>
 </div>
 
+{% comment %}
 <script>
     function load(url, id, callback) {
         let request = new XMLHttpRequest();
@@ -68,6 +69,7 @@
 		});
     }
 </script>
+{% endcomment %}
 
 {% schema %}
 {
