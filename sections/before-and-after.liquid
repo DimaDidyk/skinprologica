@@ -1,5 +1,5 @@
 <div class="before-and-after-section {% if template == 'index' %}template-index{% endif %}">
-	<div class="container {% if template != 'index' %}container-large{% endif %}">
+	<div class="container container-large{% if template != 'index' %}{% endif %}">
 		<h3 class="align-center">Before and After</h3>
 		<div class="before-container" id="before-after-all-items">
 			{% for block in section.blocks %}
