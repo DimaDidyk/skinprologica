@@ -8,29 +8,6 @@
     "theme_support_url": "https:\/\/github.com\/Shopify\/themekit\/issues"
   },
   {
-    "name": "Fonts",
-    "settings": [
-      {
-        "type": "font_picker",
-        "id": "font_n3",
-        "label": "Font 300",
-        "default": "open_sans_n3"
-      },
-      {
-        "type": "font_picker",
-        "id": "font_n4",
-        "label": "Font 400",
-        "default": "open_sans_n4"
-      },
-      {
-        "type": "font_picker",
-        "id": "font_n6",
-        "label": "Font 600",
-        "default": "open_sans_n6"
-      }
-    ]
-  },
-  {
     "name": "Contact",
     "settings": [
       {

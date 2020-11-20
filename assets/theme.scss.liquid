@@ -4,20 +4,18 @@ html, body{
   overflow-x: hidden;
 }
 
+
 /**  Fonts   */
-{% assign font_n3 = settings.font_n3 %}
-{% assign font_n4 = settings.font_n4 %}
-{% assign font_n6 = settings.font_n6 %}
-{{ font_n3 | font_face }}
-{{ font_n4 | font_face }}
-{{ font_n6 | font_face }}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap');
 
 input,
 textarea,
 select,
 .form-status,
 body{
-  font-family: "Open Sans";
+  font-family: 'Open Sans', sans-serif;
 }
 
 /**  Colors
