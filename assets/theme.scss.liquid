@@ -2083,9 +2083,15 @@ img{
     padding-left: 15px;
     box-sizing: border-box;
     .product-title{
+      min-height: 44px;
       font-size: 20px;
       line-height: 21px;
       margin-bottom: 5px;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
     }
     .some-text{
       font-size: 12px;
