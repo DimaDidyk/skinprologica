@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <link rel="preload" href="{{ 'swiper-bundle.min.js' | asset_url }}" as="script">
 
+    <link rel="shortcut icon" href="{{ 'favicon.png' | asset_url }}" type="image/png" />
+
     {{ content_for_header }} <!-- Header hook for plugins -->
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
     {{ 'theme.scss.css' | asset_url | stylesheet_tag }}

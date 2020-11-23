@@ -1,13 +1,44 @@
 {% for link in linklists[menu].links %}
 	{% assign child_list_handle = link.title | handleize %}
 	{% if linklists[child_list_handle].links != blank %}
-		<div class="menu-item{% if link.current %} active{% endif %}">
+
+		{% assign megamenu = false %}
+		{% for block in section.blocks %}
+			{% if block.settings.megamenu == link.title %}
+				{% assign megamenu = true %}
+			{% endif %}
+		{% endfor %}
+
+		<div class="menu-item{% if megamenu == true %} with-megamenu{% endif %} {% if link.current %} active{% endif %} ">
 			<a href="{{ link.url }}">{{ link.title }} {% render 'icon', name: 'arrow-down' %}</a>
-			<div class="sub-menu">
-				{% for childlink in linklists[child_list_handle].links %}
-					<a href="{{ childlink.url }}" class="{% if childlink.current %} active{% endif %}">{{ childlink.title | escape }}</a>
-				{% endfor %}
-			</div>
+
+			{% if megamenu == false %}
+				<div class="sub-menu">
+					{% for childlink in linklists[child_list_handle].links %}
+						<a href="{{ childlink.url }}" class="{% if childlink.current %} active{% endif %}">{{ childlink.title | escape }}</a>
+					{% endfor %}
+				</div>
+			{% else %}
+				<div class="sub-menu megamenu">
+					<div class="menu-lvl-2">
+						{% for childlink in linklists[child_list_handle].links %}
+							<a href="{{ childlink.url }}" class="{% if childlink.current %} active{% endif %}">{{ childlink.title | escape }}</a>
+
+							{% assign menuTitle = childlink.title %}
+							{% assign child_list_handle = childlink.title | handleize %}
+							{% if linklists[child_list_handle].links != blank %}
+								<div class="menu-lvl-3">
+									<div class="menu-lvl-3-title">{{ menuTitle }}</div>
+									{% for childlink in linklists[child_list_handle].links %}
+										<a href="{{ childlink.url }}" class="{% if childlink.current %} active{% endif %}">{{ childlink.title | escape }}</a>
+									{% endfor %}
+								</div>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+
 		</div>
 	{% else %}
 		<div class="menu-item{% if link.current %} active{% endif %}">

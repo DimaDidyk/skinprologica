@@ -91,7 +91,21 @@ const theme = {
                     const collectionProducts = document.getElementById('collection-products');
                     collectionProducts.innerHTML = collectionTemplate;
                     _this.collectionTabs();
+                    _this.anchorToTab();
                 });
+            }
+        },
+
+        anchorToTab: function (){
+            const href = location.hash;
+            if( href !== '' ){
+                 setTimeout(function (){
+                     document.querySelector(href).scrollIntoView({
+                         behavior: 'smooth',
+                         block: 'start',
+                         inline: 'start'
+                     });
+                 }, 1000);
             }
         },
 
@@ -171,7 +185,7 @@ const theme = {
                     <a href="/collections/${collectionHandle}/products/${ product.handle }/${variantId}">
                         <span class="img-wrap">
                             <img class="product-img"
-                                 src="${ theme.imgURL(product.images[0].src, '320x320')  }}"
+                                 src="${ theme.imgURL(product.images[0].src, '560x560')  }}"
                                  alt="${ product.title }" />
                             </span>
                             <span class="product-info">
@@ -187,7 +201,7 @@ const theme = {
                 let tabTemplate = `
                 <div class="product-tab unselectable">
                     <div class="product-tab-heading align-center">
-                        <h3 class="heading">${tabContent.title}</h3>
+                        <h3 class="heading" id="${tabContent.tag}">${tabContent.title}</h3>
                     </div>
                     <div class="product-tab-content">
                         <div class="product-grid">`;
@@ -249,7 +263,6 @@ const theme = {
             }).then(function(response) {
                 return response.json();
             }).then(function(data) {
-                console.log('cart success');
                 success(data);
             }).catch(function(err) {
                 console.log(err);
@@ -295,7 +308,6 @@ const theme = {
             }
         },
         addProductToCart(data){
-            console.log(data);
             theme.cart.addToCart(data, function (){
                 theme.cart.getCart(function (cart){
                     theme.cartDrawer.render(cart);
@@ -422,10 +434,7 @@ const theme = {
                 }
             },
             action: function (data){
-                console.log('start remove')
                 theme.cart.removeCartItem(data, function (data){
-                    console.log('removed');
-                    console.log(data)
                     theme.cartDrawer.render(data);
                 });
             }
