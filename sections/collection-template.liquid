@@ -37,14 +37,12 @@
 					{% endfor %}
 				</div>
 			</div>
-
 		</div>
 	</div>
 
 	<div class="container container-large">
 		<div id="collection-products">
 			<div class="product-grid">
-
 				{% paginate current_collection.products by 200 %}
 					{% for product in current_collection.products %}
 						{% render 'product-grid-item', product: product %}

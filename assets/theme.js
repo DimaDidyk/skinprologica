@@ -97,16 +97,18 @@ const theme = {
         },
 
         anchorToTab: function (){
-            const href = location.hash;
-            if( href !== '' ){
+            const href = location.hash.replaceAll(' ', '-');
+            if( href !== '' && document.querySelector(href) ){
                  setTimeout(function (){
                      document.querySelector(href).scrollIntoView({
                          behavior: 'smooth',
                          block: 'start',
-                         inline: 'start'
+                         inline: 'center'
                      });
                  }, 1000);
             }
+            let noHashURL = window.location.href.replace(/#.*$/, '');
+            window.history.replaceState('', document.title, noHashURL)
         },
 
         changeCollection: function (){
@@ -201,7 +203,7 @@ const theme = {
                 let tabTemplate = `
                 <div class="product-tab unselectable">
                     <div class="product-tab-heading align-center">
-                        <h3 class="heading" id="${tabContent.tag}">${tabContent.title}</h3>
+                        <h3 class="heading" id="${tabContent.tag.replaceAll(' ', '-')}">${tabContent.title}</h3>
                     </div>
                     <div class="product-tab-content">
                         <div class="product-grid">`;
