@@ -21,20 +21,95 @@
 						</div>
 					</div>
 
-					{% for collection in collections %}
-						<div class="swiper-slide">
-							<div class="collection-item{% if collection.handle == current_collection.handle %} active{% endif %}"
-								 collection-handle="{{ collection.handle }}">
-								<a href="{{ collection.url }}">
-									<div class="icon">
-										{% assign icon_name = 'icon-' | append: collection.handle %}
-										{% render 'icon', name: icon_name %}
-									</div>
-									<div class="collection-title">{{ collection.title }}</div>
-								</a>
-							</div>
+					<div class="swiper-slide">
+						<div class="collection-item{% if collections['body'].handle == current_collection.handle %} active{% endif %}"
+							 collection-handle="{{ collections['body'].handle }}">
+							<a href="{{ collections['body'].url }}">
+								<div class="icon">
+									{% assign icon_name = 'icon-' | append: collections['body'].handle %}
+									{% render 'icon', name: icon_name %}
+								</div>
+								<div class="collection-title">{{ collections['body'].title }}</div>
+							</a>
 						</div>
-					{% endfor %}
+					</div>
+					<div class="swiper-slide">
+						<div class="collection-item{% if collections['cellulite-reduction'].handle == current_collection.handle %} active{% endif %}"
+							 collection-handle="{{ collections['cellulite-reduction'].handle }}">
+							<a href="{{ collections['cellulite-reduction'].url }}">
+								<div class="icon">
+									{% render 'icon', name: 'icon-legs' %}
+								</div>
+								<div class="collection-title">{{ collections['cellulite-reduction'].title }}</div>
+							</a>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="collection-item{% if collections['buttocks'].handle == current_collection.handle %} active{% endif %}"
+							 collection-handle="{{ collections['buttocks'].handle }}">
+							<a href="{{ collections['buttocks'].url }}">
+								<div class="icon">
+									{% render 'icon', name: 'icon-buttocks' %}
+								</div>
+								<div class="collection-title">{{ collections['buttocks'].title }}</div>
+							</a>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="collection-item{% if collections['face'].handle == current_collection.handle %} active{% endif %}"
+							 collection-handle="{{ collections['face'].handle }}">
+							<a href="{{ collections['face'].url }}">
+								<div class="icon">
+									{% render 'icon', name: 'icon-face' %}
+								</div>
+								<div class="collection-title">{{ collections['face'].title }}</div>
+							</a>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="collection-item{% if collections['hair'].handle == current_collection.handle %} active{% endif %}"
+							 collection-handle="{{ collections['hair'].handle }}">
+							<a href="{{ collections['hair'].url }}">
+								<div class="icon">
+									{% render 'icon', name: 'icon-hair' %}
+								</div>
+								<div class="collection-title">{{ collections['hair'].title }}</div>
+							</a>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="collection-item{% if collections['lips'].handle == current_collection.handle %} active{% endif %}"
+							 collection-handle="{{ collections['lips'].handle }}">
+							<a href="{{ collections['lips'].url }}">
+								<div class="icon">
+									{% render 'icon', name: 'icon-lips' %}
+								</div>
+								<div class="collection-title">{{ collections['lips'].title }}</div>
+							</a>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="collection-item{% if collections['botox-dysport'].handle == current_collection.handle %} active{% endif %}"
+							 collection-handle="{{ collections['botox-dysport'].handle }}">
+							<a href="{{ collections['botox-dysport'].url }}">
+								<div class="icon">
+									{% render 'icon', name: 'icon-neck' %}
+								</div>
+								<div class="collection-title">{{ collections['botox-dysport'].title }}</div>
+							</a>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="collection-item{% if collections['face-contouring'].handle == current_collection.handle %} active{% endif %}"
+							 collection-handle="{{ collections['face-contouring'].handle }}">
+							<a href="{{ collections['face-contouring'].url }}">
+								<div class="icon">
+									{% render 'icon', name: 'icon-nose' %}
+								</div>
+								<div class="collection-title">{{ collections['face-contouring'].title }}</div>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

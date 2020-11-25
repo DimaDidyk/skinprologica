@@ -80,6 +80,7 @@ const theme = {
                     collectionHandle = 'all';
                 }
                 theme.getCollectionProducts(collectionHandle).then(function (collection) {
+
                     const tabsObject = _this.getTabsObject();
                     const productByTab = _this.getProductsByTab(collection.products, tabsObject);
                     let collectionTemplate = '';
@@ -90,6 +91,7 @@ const theme = {
                     }
                     const collectionProducts = document.getElementById('collection-products');
                     collectionProducts.innerHTML = collectionTemplate;
+
                     _this.collectionTabs();
                     _this.anchorToTab();
                 });
@@ -200,10 +202,11 @@ const theme = {
                 </div>`;
             },
             collectionTab: function (tabContent, collectionHandle){
+                let tabId = tabContent.tag.replace(/\s/g, '-');
                 let tabTemplate = `
                 <div class="product-tab unselectable">
                     <div class="product-tab-heading align-center">
-                        <h3 class="heading" id="${tabContent.tag.replaceAll(' ', '-')}">${tabContent.title}</h3>
+                        <h3 class="heading" id="${tabId}">${tabContent.title}</h3>
                     </div>
                     <div class="product-tab-content">
                         <div class="product-grid">`;
